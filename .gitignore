@@ -1,0 +1,32 @@
+# Temporary and binary files
+*~
+*.py[cod]
+*.cfg
+!.isort.cfg
+!setup.cfg
+__pycache__/*
+.cache/*
+.*.swp
+.DS_Store
+
+# Package files
+*.egg
+*.eggs/
+.installed.cfg
+*.egg-info
+
+# Unittest and coverage
+.coverage
+.tox
+coverage.xml
+.pytest_cache/
+
+# Build and docs folder/files
+build/*
+dist/*
+sdist/*
+cover/*
+
+# Per-project virtualenvs
+virtualenv_run*/
+.virtualenv_run_test/
