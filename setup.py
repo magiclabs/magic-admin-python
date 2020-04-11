@@ -1,14 +1,32 @@
+from os.path import dirname
+from os.path import join
+
 from setuptools import find_packages
 from setuptools import setup
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
+
+def load_readme():
+    with open(join(dirname(__file__), 'README.md'), 'r') as fh:
+        long_description = fh.read()
+
+    return long_description
+
+
+def load_requirements():
+    with open(join(dirname(__file__), 'requirements.txt'), 'r') as fh:
+        requirements = fh.readlines()
+
+    return requirements
+
+
 setup(
     name='magic-sdk',
     version='0.0.1',
     description='Magic Python Library',
-    long_description=long_description,
+    long_description=load_readme(),
     long_description_content_type='text/markdown',
     author='Magic',
     author_email='support@magic.link',
@@ -26,11 +44,7 @@ setup(
         ],
     ),
     zip_safe=False,
-    install_requires=[
-        'requests == 2.22',
-        'web3 == 5.4.0',
-        'retrying == 1.3.3',
-    ],
+    install_requires=load_requirements(),
     python_requires='>=3.6',
     project_urls={
         'Website': 'https://magic.link',
