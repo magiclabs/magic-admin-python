@@ -1,1 +1,1 @@
-# magic-sdk-python
+# magic-admin-python

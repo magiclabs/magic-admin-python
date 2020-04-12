@@ -23,7 +23,7 @@ def load_requirements():
 
 
 setup(
-    name='magic-sdk',
+    name='magic-admin',
     version='0.0.1',
     description='Magic Python Library',
     long_description=load_readme(),
