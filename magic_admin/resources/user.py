@@ -1,4 +1,4 @@
-from magic_sdk.resources.base import ResourceComponent
+from magic_admin.resources.base import ResourceComponent
 
 
 class User(ResourceComponent):
