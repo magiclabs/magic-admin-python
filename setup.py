@@ -8,6 +8,13 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 
+def read_version():
+    with open(join(dirname(__file__), 'magic_admin', 'version.py'), 'r') as fh:
+        version_string = fh.read()
+
+    return str(version_string.rstrip().replace(' ', '').split('=')[-1])
+
+
 def load_readme():
     with open(join(dirname(__file__), 'README.md'), 'r') as fh:
         long_description = fh.read()
@@ -24,7 +31,7 @@ def load_requirements():
 
 setup(
     name='magic-admin',
-    version='0.0.2',
+    version=read_version(),
     description='Magic Python Library',
     long_description=load_readme(),
     long_description_content_type='text/markdown',
@@ -37,10 +44,10 @@ setup(
         exclude=[
             'tests',
             'tests.*',
-            'examples',
-            'examples.*',
             'testing',
             'testing.*',
+            'virtualenv_run',
+            'virtualenv_run.*',
         ],
     ),
     zip_safe=False,
