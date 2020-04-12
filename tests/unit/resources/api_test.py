@@ -1,4 +1,4 @@
-from magic_sdk.resources.api import UserAPI
+from magic_admin.resources.api import UserAPI
 
 
 class TestUserAPI:

@@ -1,4 +1,4 @@
-from magic_sdk.resources.user import User
+from magic_admin.resources.user import User
 
 
 class TestUser:

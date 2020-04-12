@@ -1,1 +1,1 @@
-from magic_sdk.magic import Magic
+from magic_admin.magic import Magic
