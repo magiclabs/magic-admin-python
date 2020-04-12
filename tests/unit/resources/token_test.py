@@ -1,4 +1,4 @@
-from magic_sdk.resources.token import Token
+from magic_admin.resources.token import Token
 
 
 class TestToken:
