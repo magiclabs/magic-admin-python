@@ -27,8 +27,8 @@ ptyprocess==0.6.0
 py==1.8.1
 Pygments==2.5.2
 pyparsing==2.4.6
-pytest==5.3.3
-pytest-cov==2.6.0
+pytest==5.4.1
+pytest-cov==2.8.1
 pytz==2019.3
 PyYAML==5.3
 six==1.14.0
