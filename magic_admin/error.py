@@ -37,6 +37,7 @@ class RequestError(MagicError):
         http_error_code=None,
         http_request_params=None,
         http_request_data=None,
+        http_method=None,
     ):
         super().__init__(message)
         self.http_status = http_status
@@ -46,9 +47,7 @@ class RequestError(MagicError):
         self.http_error_code = http_error_code
         self.http_request_params = http_request_params
         self.http_request_data = http_request_data
-
-    def __str__(self):
-        return self._message or self.http_message or '<empty message>'
+        self.http_method = http_method
 
     def __repr__(self):
         return '{error_class}(message={message!r}, ' \
@@ -61,7 +60,17 @@ class RequestError(MagicError):
             )
 
     def to_dict(self):
-        pass
+        if hasattr(self, '_dict'):
+            return self._dict
+
+        _dict = super().to_dict()
+        for attr in self.__dict__:
+            if attr.startswith('http_'):
+                _dict[attr] = self.__dict__[attr]
+
+        self._dict = _dict
+
+        return self._dict
 
 
 class RateLimitingError(RequestError):

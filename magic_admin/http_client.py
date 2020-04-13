@@ -123,14 +123,15 @@ class RequestsClient:
             error_class = APIError
 
         resp_data = resp.json()
-        return error_class(
+        raise error_class(
             http_status=resp_data.get('status'),
             http_code=status_code,
-            http_resp_data=resp_data,
+            http_resp_data=resp_data.get('data'),
             http_message=resp_data.get('message'),
             http_error_code=resp_data.get('error_code'),
             http_request_params=params,
             http_request_data=request_data,
+            http_method=resp.request.method,
         )
 
     def _handle_request_error(self, e):

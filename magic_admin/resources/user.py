@@ -1,4 +1,5 @@
 from magic_admin.resources.base import ResourceComponent
+from magic_admin.utils.did_token import construct_issuer_with_public_address
 
 
 class User(ResourceComponent):
@@ -10,16 +11,20 @@ class User(ResourceComponent):
         return self.request('get', self.v1_user_info, params={'issuer': issuer})
 
     def get_metadata_by_public_address(self, public_address):
-        pass
+        return self.get_metadata_by_issuer(
+            construct_issuer_with_public_address(public_address),
+        )
 
     def get_metadata_by_token(self, did_token):
-        pass
+        return self.get_metadata_by_issuer(self.Token.get_issuer(did_token))
 
     def logout_by_issuer(self, issuer):
-        pass
+        return self.request('post', self.v2_user_logout, data={'issuer': issuer})
 
     def logout_by_public_address(self, public_address):
-        pass
+        return self.logout_by_issuer(
+            construct_issuer_with_public_address(public_address),
+        )
 
     def logout_by_token(self, did_token):
-        pass
+        return self.logout_by_issuer(self.Token.get_issuer(did_token))
