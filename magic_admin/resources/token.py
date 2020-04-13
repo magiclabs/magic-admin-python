@@ -48,13 +48,17 @@ class Token(ResourceComponent):
         Returns:
             None.
         """
+        missing_fields = []
         for field in cls.required_fields:
             if field not in claim:
-                raise DIDTokenError(
-                    message='DID token is missing a required field: {}'.format(
-                        field,
-                    ),
-                )
+                missing_fields.append(field)
+
+        if missing_fields:
+            raise DIDTokenError(
+                message='DID token is missing required field(s): {}'.format(
+                    sorted(missing_fields),
+                ),
+            )
 
     @classmethod
     def decode(cls, did_token):
@@ -73,10 +77,13 @@ class Token(ResourceComponent):
             decoded_did_token = simplejson.loads(
                 base64.urlsafe_b64decode(did_token).decode('utf-8'),
             )
-        except Exception:
+        except Exception as e:
             raise DIDTokenError(
                 message='DID token is malformed. It has to be a based64 encoded '
-                'JSON serialized string.',
+                'JSON serialized string. {err} ({msg}).'.format(
+                    err=e.__class__.__name__,
+                    msg=str(e) or '<empty message>',
+                ),
             )
 
         if len(decoded_did_token) != EXPECTED_DID_TOKEN_CONTENT_LENGTH:
@@ -89,10 +96,13 @@ class Token(ResourceComponent):
 
         try:
             claim = simplejson.loads(decoded_did_token[1])
-        except Exception:
+        except Exception as e:
             raise DIDTokenError(
                 message='DID token is malformed. Given claim should be a JSON '
-                'serialized string.',
+                'serialized string. {err} ({msg}).'.format(
+                    err=e.__class__.__name__,
+                    msg=str(e) or '<empty message>',
+                ),
             )
 
         cls._check_required_fields(claim)
