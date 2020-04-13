@@ -15,7 +15,7 @@ class ResourceMeta(type):
 
 class ResourceComponent(metaclass=ResourceMeta):
 
-    base_url = base_url
+    _base_url = base_url
 
     def __getattr__(self, resource_name):
         if resource_name in self._registry:
@@ -28,14 +28,17 @@ class ResourceComponent(metaclass=ResourceMeta):
                 ),
             )
 
+    def setup_request_client(self, retries, timeout, backoff_factor):
+        _request_client = RequestsClient(retries, timeout, backoff_factor)
+
+        for resource in self._registry.values():
+            setattr(resource, '_request_client', _request_client)
+
     def _construct_url(self, url_path):
         return '{base_url}{url_path}'.format(
-            base_url=self.base_url,
+            base_url=self._base_url,
             url_path=url_path,
         )
-
-    def _init_request_client(self, retries, timeout, backoff_factor):
-        self._request_client = RequestsClient(retries, timeout, backoff_factor)
 
     def request(self, method, url_path, params=None, data=None):
         return self._request_client.request(

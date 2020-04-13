@@ -1,1 +1,1 @@
-base_url = 'https://api.magic.link'
+base_url = 'https://api.stagef.magic.link'

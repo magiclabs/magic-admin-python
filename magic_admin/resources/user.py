@@ -7,7 +7,7 @@ class User(ResourceComponent):
     v2_user_logout = '/v2/admin/auth/user/logout'
 
     def get_metadata_by_issuer(self, issuer):
-        self.request('get', self.v1_user_info, params={'issuer': issuer})
+        return self.request('get', self.v1_user_info, params={'issuer': issuer})
 
     def get_metadata_by_public_address(self, public_address):
         pass
