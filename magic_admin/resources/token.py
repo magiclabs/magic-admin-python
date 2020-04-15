@@ -153,7 +153,7 @@ class Token(ResourceComponent):
 
         if current_time_in_s > claim['ext']:
             raise DIDTokenError(
-                message='Given DiD token has expired. Please generate a new one.',
+                message='Given DID token has expired. Please generate a new one.',
             )
 
         if current_time_in_s < apply_did_token_nbf_grace_period(claim['nbf']):
