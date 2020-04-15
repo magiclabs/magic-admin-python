@@ -4,26 +4,26 @@ from os.path import join
 from setuptools import find_packages
 from setuptools import setup
 
-with open('README.md', 'r') as fh:
+with open('README.md') as fh:
     long_description = fh.read()
 
 
 def read_version():
-    with open(join(dirname(__file__), 'magic_admin', 'version.py'), 'r') as fh:
+    with open(join(dirname(__file__), 'magic_admin', 'version.py')) as fh:
         version_string = fh.read()
 
     return str(version_string.rstrip().replace(' ', '').split('=')[-1])
 
 
 def load_readme():
-    with open(join(dirname(__file__), 'README.md'), 'r') as fh:
+    with open(join(dirname(__file__), 'README.md')) as fh:
         long_description = fh.read()
 
     return long_description
 
 
 def load_requirements():
-    with open(join(dirname(__file__), 'requirements.txt'), 'r') as fh:
+    with open(join(dirname(__file__), 'requirements.txt')) as fh:
         requirements = fh.readlines()
 
     return requirements

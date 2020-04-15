@@ -22,10 +22,8 @@ class MagicErrorBase:
         assert str(self.error_class()) == '<empty message>'
 
     def test_repr(self):
-        assert repr(self.error_class(self.message)) == '{}(message=\'Magic is '
-        'amazing\')'.format(
-            self.error_class.__name__,
-        )
+        assert repr(self.error_class(self.message)) == '{}(message=\'Magic is ' \
+            'amazing\')'.format(self.error_class.__name__)
 
     def test_to_dict(self):
         assert self.error_class(self.message).to_dict() == {'message': str(self.message)}

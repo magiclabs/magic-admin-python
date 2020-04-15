@@ -23,9 +23,6 @@ class TestToken:
             {'nbf', 'sub', 'iss', 'ext', 'aud', 'tid', 'iat'},
         ) == frozenset()
 
-    def test_parse_public_address(self):
-        assert Token._parse_public_address(self.issuer) == self.public_address
-
     def test_check_required_fields_raises_error(self):
         with pytest.raises(DIDTokenError) as e:
             Token._check_required_fields(
@@ -51,9 +48,8 @@ class TestToken:
         mock_decode.assert_called_once_with(self.did_token)
 
     def test_get_public_address_passes(self):
-        with mock.patch.object(
-            Token,
-            '_parse_public_address',
+        with mock.patch(
+            'magic_admin.resources.token.parse_public_address_from_issuer',
             return_value=self.public_address,
         ) as mock_parse_public_address, mock.patch.object(
             Token,
