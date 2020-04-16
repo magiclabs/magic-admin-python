@@ -24,7 +24,7 @@ def load_requirements():
 
 setup(
     name='magic-admin',
-    version='0.0.1',
+    version='0.0.2',
     description='Magic Python Library',
     long_description=load_readme(),
     long_description_content_type='text/markdown',
