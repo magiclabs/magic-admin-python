@@ -1,3 +1,6 @@
+from magic_admin.error import DIDTokenError
+
+
 def parse_public_address_from_issuer(issuer):
     """
     Args:
@@ -8,7 +11,13 @@ def parse_public_address_from_issuer(issuer):
     Returns:
         public_address (str): An Ethereum public key.
     """
-    return issuer.split(':')[-1]
+    try:
+        return issuer.split(':')[2]
+    except IndexError:
+        raise DIDTokenError(
+            'Given issuer ({}) is malformed. Please make sure it follows the '
+            '`did:method-name:method-specific-id` format.'.format(issuer),
+        )
 
 
 def construct_issuer_with_public_address(public_address):

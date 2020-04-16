@@ -31,14 +31,14 @@ class RequestsClient:
         platform_info = {}
 
         for attr, func in [
-            ['language_version', platform.python_version],
             ['platform', platform.platform],
-            ['uname', lambda: ' '.join(platform.uname())],
+            ['language_version', platform.python_version],
+            ['uname', platform.uname],
         ]:
             try:
-                val = func()
+                val = str(func())
             except Exception as e:
-                val = '<{}>'.fortmat(str(e))
+                val = '<{}>'.format(str(e))
 
             platform_info[attr] = val
 
@@ -105,7 +105,7 @@ class RequestsClient:
             data,
         )
 
-    def _parse_and_convert_to_api_response(self, resp, params, request_data):
+    def _parse_and_convert_to_api_response(self, resp, request_params, request_data):
         status_code = resp.status_code
 
         if 200 <= status_code < 300:
@@ -129,15 +129,15 @@ class RequestsClient:
             http_resp_data=resp_data.get('data'),
             http_message=resp_data.get('message'),
             http_error_code=resp_data.get('error_code'),
-            http_request_params=params,
+            http_request_params=request_params,
             http_request_data=request_data,
             http_method=resp.request.method,
         )
 
     def _handle_request_error(self, e):
         message = 'Unexpected error thrown while communicating to Magic. ' \
-            'Please reach out to support@magic.link if the problem continue. ' \
-            'Error message: A {error_class} was raised - {error_message}'.format(
+            'Please reach out to support@magic.link if the problem continues. ' \
+            'Error message: {error_class} was raised - {error_message}'.format(
                 error_class=e.__class__.__name__,
                 error_message=str(e) or 'no error message.',
             )

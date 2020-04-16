@@ -60,17 +60,12 @@ class RequestError(MagicError):
             )
 
     def to_dict(self):
-        if hasattr(self, '_dict'):
-            return self._dict
-
         _dict = super().to_dict()
         for attr in self.__dict__:
             if attr.startswith('http_'):
                 _dict[attr] = self.__dict__[attr]
 
-        self._dict = _dict
-
-        return self._dict
+        return _dict
 
 
 class RateLimitingError(RequestError):
