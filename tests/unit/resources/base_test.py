@@ -21,9 +21,6 @@ class TestResourceComponent:
         self.rc = ResourceComponent()
 
     def test_setup_request_client(self):
-        for resource in self.rc._registry.values():
-            assert hasattr(resource, '_request_client') is False
-
         with mock.patch(
             'magic_admin.resources.base.RequestsClient',
         ) as mock_request_client:
