@@ -1,4 +1,4 @@
-base_url = 'https://api.stagef.magic.link'
+base_url = 'https://api.magic.link'
 
 api_secret_api_key_missing_message = 'API secret key is missing. Please specify ' \
     'an API secret key when you instantiate the `Magic(api_secret_key=<KEY>)` ' \
