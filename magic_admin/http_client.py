@@ -1,6 +1,6 @@
+import json
 import platform
 
-import simplejson
 from requests import Session
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
@@ -75,7 +75,7 @@ class RequestsClient:
 
         return {
             'X-Magic-Secret-Key': magic_admin.api_secret_key,
-            'User-Agent': simplejson.dumps(user_agent),
+            'User-Agent': json.dumps(user_agent),
         }
 
     def request(self, method, url, params=None, data=None):

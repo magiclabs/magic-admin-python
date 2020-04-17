@@ -1,8 +1,8 @@
+import json
 from collections import namedtuple
 from unittest import mock
 
 import pytest
-import simplejson
 
 import magic_admin
 from magic_admin import version
@@ -95,7 +95,7 @@ class TestRequestsClient:
         ) as mock_get_platform_info:
             assert rc._get_request_headers() == {
                 'X-Magic-Secret-Key': magic_admin.api_secret_key,
-                'User-Agent': simplejson.dumps({
+                'User-Agent': json.dumps({
                     'language': 'python',
                     'sdk_version': version.VERSION,
                     'publisher': 'magic',
