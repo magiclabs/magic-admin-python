@@ -6,6 +6,7 @@ from web3.auto import w3
 
 from magic_admin.error import DIDTokenError
 from magic_admin.resources.base import ResourceComponent
+from magic_admin.utils.did_token import parse_public_address_from_issuer
 from magic_admin.utils.time import apply_did_token_nbf_grace_period
 from magic_admin.utils.time import epoch_time_now
 
@@ -24,19 +25,6 @@ class Token(ResourceComponent):
         'aud',
         'tid',
     ])
-
-    @staticmethod
-    def _parse_public_address(issuer):
-        """
-        Args:
-            issuer (str): Issuer (the signer, the "user"). This field is represented
-                as a Decentralized Identifier populated with the user's Ethereum
-                public key.
-
-        Returns:
-            public_address (str): An Ethereum public key.
-        """
-        return issuer.split(':')[-1]
 
     @classmethod
     def _check_required_fields(cls, claim):
@@ -133,7 +121,7 @@ class Token(ResourceComponent):
         Returns:
             public_address (str): An Ethereum public key.
         """
-        return cls._parse_public_address(cls.get_issuer(did_token))
+        return parse_public_address_from_issuer(cls.get_issuer(did_token))
 
     @classmethod
     def validate(cls, did_token):
