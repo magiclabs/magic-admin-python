@@ -7,12 +7,13 @@ from requests.packages.urllib3.util.retry import Retry
 
 import magic_admin
 from magic_admin import version
+from magic_admin.config import api_secret_api_key_missing_message
 from magic_admin.config import base_url
 from magic_admin.error import APIConnectionError
 from magic_admin.error import APIError
 from magic_admin.error import AuthenticationError
 from magic_admin.error import BadRequestError
-from magic_admin.error import PermissiongError
+from magic_admin.error import ForbiddenError
 from magic_admin.error import RateLimitingError
 from magic_admin.response import MagicResponse
 
@@ -45,7 +46,7 @@ class RequestsClient:
         return platform_info
 
     def _setup_request_session(self):
-        """Take advantage of the ``requets.Session``. If cleint is making several
+        """Take advantage of the ``requets.Session``. If client is making several
         requests to the same host, the underlying TCP connection will be reused,
         which can result in a significant performance increase.
         """
@@ -70,14 +71,7 @@ class RequestsClient:
         }
 
         if magic_admin.api_secret_key is None:
-            raise AuthenticationError(
-                message='API secret key is missing. Please specific an API secret '
-                'key when you instantiate the `Magic(api_secrete_key=<KEY>)` object '
-                'or use the environment variable, `MAGIC_API_SECRET_KEY`. You can '
-                'get your API secret key from https://dashboard.magic.link. You if '
-                'you having trouble, please don\'t hesitate to reach out to us at '
-                'support@magic.link',
-            )
+            raise AuthenticationError(api_secret_api_key_missing_message)
 
         return {
             'X-Magic-Secret-Key': magic_admin.api_secret_key,
@@ -118,7 +112,7 @@ class RequestsClient:
         elif status_code == 401:
             error_class = AuthenticationError
         elif status_code == 403:
-            error_class = PermissiongError
+            error_class = ForbiddenError
         else:
             error_class = APIError
 

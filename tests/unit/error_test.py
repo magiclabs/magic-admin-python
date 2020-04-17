@@ -3,8 +3,8 @@ from magic_admin.error import APIError
 from magic_admin.error import AuthenticationError
 from magic_admin.error import BadRequestError
 from magic_admin.error import DIDTokenError
+from magic_admin.error import ForbiddenError
 from magic_admin.error import MagicError
-from magic_admin.error import PermissiongError
 from magic_admin.error import RateLimitingError
 from magic_admin.error import RequestError
 
@@ -121,9 +121,9 @@ class TestAuthenticationError(RequestErrorBase):
     error_class = AuthenticationError
 
 
-class TestPermissiongError(RequestErrorBase):
+class TestForbiddenError(RequestErrorBase):
 
-    error_class = PermissiongError
+    error_class = ForbiddenError
 
 
 class TestAPIError(RequestErrorBase):

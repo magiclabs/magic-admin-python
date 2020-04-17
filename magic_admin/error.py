@@ -80,7 +80,7 @@ class AuthenticationError(RequestError):
     pass
 
 
-class PermissiongError(RequestError):
+class ForbiddenError(RequestError):
     pass
 
 

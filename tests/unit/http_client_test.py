@@ -11,7 +11,7 @@ from magic_admin.error import APIConnectionError
 from magic_admin.error import APIError
 from magic_admin.error import AuthenticationError
 from magic_admin.error import BadRequestError
-from magic_admin.error import PermissiongError
+from magic_admin.error import ForbiddenError
 from magic_admin.error import RateLimitingError
 from magic_admin.http_client import RequestsClient
 from magic_admin.response import MagicResponse
@@ -262,7 +262,7 @@ class TestParseAndConvertToAPIResponse:
         [
             (400, BadRequestError),
             (401, AuthenticationError),
-            (403, PermissiongError),
+            (403, ForbiddenError),
             (429, RateLimitingError),
             # Generic API Error if we did not specify handling it.
             (499, APIError),

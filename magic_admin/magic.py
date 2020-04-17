@@ -1,6 +1,7 @@
 import os
 
 import magic_admin
+from magic_admin.config import api_secret_api_key_missing_message
 from magic_admin.error import AuthenticationError
 from magic_admin.resources.base import ResourceComponent
 
@@ -38,11 +39,4 @@ class Magic:
         )
 
         if magic_admin.api_secret_key is None:
-            raise AuthenticationError(
-                message='API secret key is missing. Please specific an API secret '
-                'key when you instantiate the `Magic(api_secrete_key=<KEY>)` object '
-                'or use the environment variable, `MAGIC_API_SECRET_KEY`. You can '
-                'get your API secret key from https://dashboard.magic.link. You if '
-                'you having trouble, please don\'t hesitate to reach out to us at '
-                'support@magic.link',
-            )
+            raise AuthenticationError(api_secret_api_key_missing_message)
