@@ -17,8 +17,6 @@ jobs:
       - run:
           command: source virtualenv_run/bin/activate; make test
           name: Run tests
-      - store_test_results:
-          path: pytest
 
 workflows:
   main:
