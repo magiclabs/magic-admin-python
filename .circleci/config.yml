@@ -15,11 +15,10 @@ jobs:
           name: Install deps
       - python/save-cache
       - run:
-          command: source virtualenv_run/bin/activate 
-          name: Source virtualenv
-      - run:
-          command: make test
+          command: source virtualenv_run/bin/activate; make test
           name: Run tests
+      - store_test_results:
+          path: pytest
 
 workflows:
   main:
