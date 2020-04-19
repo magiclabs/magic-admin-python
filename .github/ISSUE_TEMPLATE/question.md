@@ -18,6 +18,6 @@ labels: ❓Question
 
 | Software            | Version(s) |
 | ------------------- | ---------- |
-| `magic-admin-python`|
-| `python`            |
-| Operating System    |
+| `magic-admin-python`|            |
+| `python`            |            |
+| Operating System    |            |

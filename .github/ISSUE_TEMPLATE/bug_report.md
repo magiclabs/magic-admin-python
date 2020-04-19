@@ -37,6 +37,6 @@ labels: 🐛 Bug Report, 🔍 Needs Triage
 
 | Software            | Version(s) |
 | ------------------- | ---------- |
-| `magic-admin-python`|
-| `python`            |
-| Operating System    |
+| `magic-admin-python`|            |
+| `python`            |            |
+| Operating System    |            |
