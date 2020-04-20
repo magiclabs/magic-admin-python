@@ -1,6 +1,6 @@
 import base64
+import json
 
-import simplejson
 from eth_account.messages import defunct_hash_message
 from web3.auto import w3
 
@@ -62,7 +62,7 @@ class Token(ResourceComponent):
             claim (dict): A dict of unsigned message.
         """
         try:
-            decoded_did_token = simplejson.loads(
+            decoded_did_token = json.loads(
                 base64.urlsafe_b64decode(did_token).decode('utf-8'),
             )
         except Exception as e:
@@ -83,7 +83,7 @@ class Token(ResourceComponent):
         proof = decoded_did_token[0]
 
         try:
-            claim = simplejson.loads(decoded_did_token[1])
+            claim = json.loads(decoded_did_token[1])
         except Exception as e:
             raise DIDTokenError(
                 message='DID token is malformed. Given claim should be a JSON '
@@ -138,7 +138,7 @@ class Token(ResourceComponent):
         proof, claim = cls.decode(did_token)
         recovered_address = w3.eth.account.recoverHash(
             defunct_hash_message(
-                text=simplejson.dumps(claim, separators=(',', ':')),
+                text=json.dumps(claim, separators=(',', ':')),
             ),
             signature=proof,
         )

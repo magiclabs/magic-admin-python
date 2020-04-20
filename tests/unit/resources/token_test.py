@@ -1,8 +1,8 @@
+import json
 from collections import namedtuple
 from unittest import mock
 
 import pytest
-import simplejson
 
 from magic_admin.error import DIDTokenError
 from magic_admin.resources.token import Token
@@ -73,7 +73,7 @@ class TestTokenDecode:
         with mock.patch(
             'magic_admin.resources.token.base64.urlsafe_b64decode',
         ) as mock_urlsafe_b64decode, mock.patch(
-            'magic_admin.resources.token.simplejson.loads',
+            'magic_admin.resources.token.json.loads',
         ) as mock_json_loads:
             yield self.mock_funcs(mock_urlsafe_b64decode, mock_json_loads)
 
@@ -203,7 +203,7 @@ class TestTokenValidate:
     ):
         setup_mocks.decode.assert_called_once_with(self.did_token)
         setup_mocks.defunct_hash_message.assert_called_once_with(
-            text=simplejson.dumps(setup_mocks.claim, separators=(',', ':')),
+            text=json.dumps(setup_mocks.claim, separators=(',', ':')),
         )
         setup_mocks.recoverHash.assert_called_once_with(
             setup_mocks.defunct_hash_message.return_value,
