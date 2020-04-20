@@ -9,10 +9,11 @@ with open('README.md') as fh:
 
 
 def read_version():
+    version_contents = {}
     with open(join(dirname(__file__), 'magic_admin', 'version.py')) as fh:
-        version_string = fh.read()
+        exec(fh.read(), version_contents)
 
-    return str(version_string.rstrip().replace(' ', '').split('=')[-1])
+    return version_contents['VERSION']
 
 
 def load_readme():
