@@ -1,6 +1,6 @@
 # Magic Admin Python SDK
 
-The Magic Admin Python SDK provides convenient ways for developers to interact with Magic API endpoints and an array of unitities to handle [DID Token](https://docs.magic.link/tutorials/decentralized-id).
+The Magic Admin Python SDK provides convenient ways for developers to interact with Magic API endpoints and an array of utilities to handle [DID Token](https://docs.magic.link/tutorials/decentralized-id).
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ The Magic Admin Python SDK provides convenient ways for developers to interact w
 * [License](#license)
 
 ## Documentation
-See the [Magic doc](https://docs.magic.link/admin-sdk/coming-soon)! (TODO: this to Python section once it is added).
+See the [Magic doc](https://docs.magic.link/admin-sdk/coming-soon)! (TODO: Update this to Python section once it is added).
 
 ## Installation
 You can directly install the SDK with:
@@ -91,7 +91,7 @@ To clean up existing virtualenv, tox log and pytest cache, do a
 make clean
 ```
 
-This repository is installed with [pre-commit](https://pre-commit.com/). All the pre-commit hooks are run automatically with every new commit. This is to keep the codebase styling and fortmat consistent.
+This repository is installed with [pre-commit](https://pre-commit.com/). All of the pre-commit hooks are run automatically with every new commit. This is to keep the codebase styling and format consistent.
 
 You can also run the pre-commit manually. You can find all the pre-commit hooks [here](.pre-commit-config.yaml).
 
