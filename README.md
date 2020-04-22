@@ -11,7 +11,7 @@ The Magic Admin Python SDK provides convenient ways for developers to interact w
 * [License](#license)
 
 ## Documentation
-See the [Magic doc](https://docs.magic.link/admin-sdk/coming-soon)! (TODO: Update this to Python section once it is added).
+See the [Magic doc](https://docs.magic.link/admin-sdk/python)!
 
 ## Installation
 You can directly install the SDK with:
