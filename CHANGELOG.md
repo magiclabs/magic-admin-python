@@ -2,7 +2,7 @@
 
 #### Fixed
 
-- <PR-#ISSUE> ...
+- PR-#14: Update external document link.
 
 #### Changed
 
