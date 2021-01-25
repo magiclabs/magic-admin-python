@@ -30,3 +30,6 @@ cover/*
 # Per-project virtualenvs
 virtualenv_run*/
 .virtualenv_run_test/
+
+# Pycharm
+.idea/
