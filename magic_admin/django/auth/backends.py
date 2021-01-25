@@ -132,8 +132,6 @@ class MagicAuthBackend(ModelBackend):
         request,
         user_email=None,
         mode=MagicAuthBackendMode.MAGIC,
-        *args,
-        **kwargs,
     ):
         if not user_email:
             raise MissingUserEmailInput()
