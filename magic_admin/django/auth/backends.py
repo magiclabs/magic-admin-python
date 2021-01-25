@@ -61,6 +61,7 @@ class MagicAuthBackend(ModelBackend):
                 'DID Token failed validation. No user is to be retrieved.',
                 error_class=e.__class__.__name__,
             )
+            raise e
             return None
 
         try:
@@ -92,7 +93,7 @@ class MagicAuthBackend(ModelBackend):
         if identity_token is None:
             raise MissingAuthorizationHeader()
 
-        public_address = Magic().User.get_public_address(identity_token)
+        public_address = Magic().Token.get_public_address(identity_token)
 
         try:
             user = self._validate_identity_token_and_load_user(

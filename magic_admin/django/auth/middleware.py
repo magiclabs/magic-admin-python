@@ -99,8 +99,9 @@ class MagicAuthMiddleware(MiddlewareMixin):
                 AuthenticationError,
                 ForbiddenError,
                 APIError,
-        ):
+        ) as e:
             logout(request)
+            raise e
             return
 
         if request.user.is_anonymous:
