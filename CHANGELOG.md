@@ -2,7 +2,7 @@
 
 #### Fixed
 
-- <PR-#ISSUE> ...
+- <PR-#31> : requests 2.22.0 to 2.25.1, web3 5.4.0 to 5.19.0
 
 #### Changed
 
