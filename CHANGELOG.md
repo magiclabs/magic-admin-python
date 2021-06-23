@@ -2,7 +2,7 @@
 
 #### Fixed
 
-- <PR-#ISSUE> ...
+- <PR-#34> Relax dependency version requirement constraints
 
 #### Changed
 
