@@ -2,7 +2,7 @@
 
 [![<MagicHQ>](https://circleci.com/gh/MagicHQ/magic-admin-python.svg?style=shield)](https://circleci.com/gh/MagicHQ/magic-admin-python)
 
-The Magic Admin Python SDK provides convenient ways for developers to interact with Magic API endpoints and an array of utilities to handle [DID Token](https://docs.magic.link/tutorials/decentralized-id).
+The Magic Admin Python SDK provides convenient ways for developers to interact with Magic API endpoints and an array of utilities to handle [DID Token](https://magic.link/docs/introduction/decentralized-id).
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ The Magic Admin Python SDK provides convenient ways for developers to interact w
 * [License](#license)
 
 ## Documentation
-See the [Magic doc](https://docs.magic.link/admin-sdk/python)!
+See the [Magic doc](https://magic.link/docs/admin-sdk/python/get-started)!
 
 ## Installation
 You can directly install the SDK with:
