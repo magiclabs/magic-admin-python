@@ -22,12 +22,12 @@ pluggy==0.13.1
 pre-commit==1.21.0
 prompt-toolkit==3.0.5
 ptyprocess==0.6.0
-py==1.8.1
-Pygments==2.6.1
+py==1.10.0
+Pygments==2.7.4
 pyparsing==2.4.7
 pytest==5.4.1
 pytest-cov==2.8.1
-PyYAML==5.3.1
+PyYAML==5.4
 six==1.14.0
 toml==0.10.0
 tox==3.0.0
