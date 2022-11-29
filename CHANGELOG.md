@@ -12,6 +12,12 @@
 
 - <PR-#ISSUE> ...
 
+## `0.1.0` - 11/30/2022
+
+#### Added
+
+- PR-#46: Support mult-chain wallets in get_metadata calls
+
 ## `0.0.5` - 06/23/2021
 
 #### Fixed
