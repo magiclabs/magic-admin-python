@@ -20,6 +20,7 @@ pexpect==4.8.0
 pickleshare==0.7.5
 pluggy==0.13.1
 pre-commit==1.21.0
+pretend==1.0.8
 prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 py==1.8.1
@@ -27,6 +28,7 @@ Pygments==2.6.1
 pyparsing==2.4.7
 pytest==5.4.1
 pytest-cov==2.8.1
+pytest-mock==3.6.1
 PyYAML==5.3.1
 six==1.14.0
 toml==0.10.0
