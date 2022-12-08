@@ -1,0 +1,26 @@
+from enum import Enum
+
+
+class WalletType(Enum):
+    ETH = 'ETH'
+    HARMONY = 'HARMONY'
+    ICON = 'ICON'
+    FLOW = 'FLOW'
+    TEZOS = 'TEZOS'
+    ZILLIQA = 'ZILLIQA'
+    POLKADOT = 'POLKADOT'
+    SOLANA = 'SOLANA'
+    AVAX = 'AVAX'
+    ALGOD = 'ALGOD'
+    COSMOS = 'COSMOS'
+    CELO = 'CELO'
+    BITCOIN = 'BITCOIN'
+    NEAR = 'NEAR'
+    HELIUM = 'HELIUM'
+    CONFLUX = 'CONFLUX'
+    TERRA = 'TERRA'
+    TAQUITO = 'TAQUITO'
+    ED = 'ED'
+    HEDERA = 'HEDERA'
+    NONE = 'NONE'
+    ANY = 'ANY'
