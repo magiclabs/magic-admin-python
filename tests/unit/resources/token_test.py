@@ -5,6 +5,8 @@ from unittest import mock
 import pytest
 
 from magic_admin.error import DIDTokenError
+from magic_admin.error import DIDTokenExpired
+from magic_admin.error import DIDTokenMalformed
 from magic_admin.resources.token import Token
 
 
@@ -24,7 +26,7 @@ class TestToken:
         ) == frozenset()
 
     def test_check_required_fields_raises_error(self):
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenMalformed) as e:
             Token._check_required_fields(
                 self._generate_claim(fields=['nbf', 'sub', 'aud', 'tid', 'iat']),
             )
@@ -80,7 +82,7 @@ class TestTokenDecode:
     def test_decode_raises_error_if_did_token_is_malformed(self, setup_mocks):
         setup_mocks.urlsafe_b64decode.side_effect = Exception()
 
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenMalformed) as e:
             Token.decode(self.did_token)
 
         setup_mocks.urlsafe_b64decode.assert_called_once_with(self.did_token)
@@ -90,7 +92,7 @@ class TestTokenDecode:
     def test_decode_raises_error_if_did_token_has_missing_parts(self, setup_mocks):
         setup_mocks.json_loads.return_value = ('miss one part')
 
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenMalformed) as e:
             Token.decode(self.did_token)
 
         setup_mocks.urlsafe_b64decode.assert_called_once_with(self.did_token)
@@ -101,7 +103,7 @@ class TestTokenDecode:
             '[proof, claim].'
 
     def test_decode_raises_error_if_claim_is_not_json_serializable(self, setup_mocks):
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenMalformed) as e:
             setup_mocks.json_loads.side_effect = [
                 ('proof_in_str', 'claim_in_str'),  # Succeeds the first time.
                 Exception(),  # Fails the second time.
@@ -239,7 +241,7 @@ class TestTokenValidate:
         setup_mocks.epoch_time_now.return_value = \
             setup_mocks.claim['ext'] + 1
 
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenExpired) as e:
             Token.validate(self.did_token)
 
         self._assert_validate_funcs_called(
