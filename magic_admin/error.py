@@ -21,6 +21,14 @@ class DIDTokenError(MagicError):
     pass
 
 
+class DIDTokenMalformed(MagicError):
+    pass
+
+
+class DIDTokenExpired(MagicError):
+    pass
+
+
 class APIConnectionError(MagicError):
     pass
 
