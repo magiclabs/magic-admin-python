@@ -142,9 +142,8 @@ class Token(ResourceComponent):
 
         if claim['ext'] is None:
             raise DIDTokenInvalid(
-                message='Given DID token cannot be used at this time. Please '
-                'check the "ext" field and regenerate a new token with a suitable '
-                'value.',
+                message='Please check the "ext" field and regenerate a new token '
+                'with a suitable value.',
             )
 
         recovered_address = w3.eth.account.recoverHash(

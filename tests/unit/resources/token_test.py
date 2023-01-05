@@ -257,9 +257,8 @@ class TestTokenValidate:
         with pytest.raises(DIDTokenInvalid) as e:
             Token.validate(self.did_token)
 
-        assert str(e.value) == 'Given DID token cannot be used at this time. ' \
-            'Please check the "ext" field and regenerate a new token with a ' \
-            'suitable value.'
+        assert str(e.value) == 'Please check the "ext" field and regenerate a new' \
+            ' token with a suitable value.'
 
     def test_validate_raises_error_if_did_token_used_before_nbf(self, setup_mocks):
         setup_mocks.epoch_time_now.return_value = \
