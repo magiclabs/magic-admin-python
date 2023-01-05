@@ -4,8 +4,8 @@ from unittest import mock
 
 import pytest
 
-from magic_admin.error import DIDTokenError
 from magic_admin.error import DIDTokenExpired
+from magic_admin.error import DIDTokenInvalid
 from magic_admin.error import DIDTokenMalformed
 from magic_admin.resources.token import Token
 
@@ -230,7 +230,7 @@ class TestTokenValidate:
     def test_validate_raises_error_if_signature_mismatch(self, setup_mocks):
         setup_mocks.get_public_address.return_value = 'random_public_address'
 
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenInvalid) as e:
             Token.validate(self.did_token)
 
         self._assert_validate_funcs_called(setup_mocks)
@@ -251,11 +251,21 @@ class TestTokenValidate:
         assert str(e.value) == 'Given DID token has expired. Please generate a ' \
             'new one.'
 
+    def test_validate_raises_error_if_did_token_has_no_expiration(self, setup_mocks):
+        setup_mocks.claim['ext'] = None
+
+        with pytest.raises(DIDTokenInvalid) as e:
+            Token.validate(self.did_token)
+
+        assert str(e.value) == 'Given DID token cannot be used at this time. ' \
+            'Please check the "ext" field and regenerate a new token with a ' \
+            'suitable value.'
+
     def test_validate_raises_error_if_did_token_used_before_nbf(self, setup_mocks):
         setup_mocks.epoch_time_now.return_value = \
             setup_mocks.claim['nbf'] - 1
 
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenInvalid) as e:
             Token.validate(self.did_token)
 
         self._assert_validate_funcs_called(

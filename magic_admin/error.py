@@ -17,7 +17,7 @@ class MagicError(Exception):
         return {'message': str(self)}
 
 
-class DIDTokenError(MagicError):
+class DIDTokenInvalid(MagicError):
     pass
 
 
