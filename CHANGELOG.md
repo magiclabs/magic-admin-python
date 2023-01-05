@@ -12,6 +12,12 @@
 
 - <PR-#ISSUE> ...
 
+## `0.2.0` - 1/04/2023
+
+#### Added
+
+- PR-#50: Split up DIDTokenError into DIDTokenExpired, DIDTokenMalformed, and DIDTokenInvalid.
+
 ## `0.1.0` - 11/30/2022
 
 #### Added
