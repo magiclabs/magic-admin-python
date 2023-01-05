@@ -5,6 +5,8 @@ from eth_account.messages import defunct_hash_message
 from web3.auto import w3
 
 from magic_admin.error import DIDTokenError
+from magic_admin.error import DIDTokenExpired
+from magic_admin.error import DIDTokenMalformed
 from magic_admin.resources.base import ResourceComponent
 from magic_admin.utils.did_token import parse_public_address_from_issuer
 from magic_admin.utils.time import apply_did_token_nbf_grace_period
@@ -42,7 +44,7 @@ class Token(ResourceComponent):
                 missing_fields.append(field)
 
         if missing_fields:
-            raise DIDTokenError(
+            raise DIDTokenMalformed(
                 message='DID token is missing required field(s): {}'.format(
                     sorted(missing_fields),
                 ),
@@ -55,7 +57,7 @@ class Token(ResourceComponent):
             did_token (base64.str): Base64 encoded string.
 
         Raises:
-            DIDTokenError: If token format is invalid.
+            DIDTokenMalformed: If token format is invalid.
 
         Returns:
             proof (str): A signed message.
@@ -66,7 +68,7 @@ class Token(ResourceComponent):
                 base64.urlsafe_b64decode(did_token).decode('utf-8'),
             )
         except Exception as e:
-            raise DIDTokenError(
+            raise DIDTokenMalformed(
                 message='DID token is malformed. It has to be a based64 encoded '
                 'JSON serialized string. {err} ({msg}).'.format(
                     err=e.__class__.__name__,
@@ -75,7 +77,7 @@ class Token(ResourceComponent):
             )
 
         if len(decoded_did_token) != EXPECTED_DID_TOKEN_CONTENT_LENGTH:
-            raise DIDTokenError(
+            raise DIDTokenMalformed(
                 message='DID token is malformed. It has to have two parts '
                 '[proof, claim].',
             )
@@ -85,7 +87,7 @@ class Token(ResourceComponent):
         try:
             claim = json.loads(decoded_did_token[1])
         except Exception as e:
-            raise DIDTokenError(
+            raise DIDTokenMalformed(
                 message='DID token is malformed. Given claim should be a JSON '
                 'serialized string. {err} ({msg}).'.format(
                     err=e.__class__.__name__,
@@ -131,6 +133,7 @@ class Token(ResourceComponent):
 
         Raises:
             DIDTokenError: If DID token fails the validation.
+            DIDTokenExpired: If DID token has expired.
 
         Returns:
             None.
@@ -152,7 +155,7 @@ class Token(ResourceComponent):
         current_time_in_s = epoch_time_now()
 
         if current_time_in_s > claim['ext']:
-            raise DIDTokenError(
+            raise DIDTokenExpired(
                 message='Given DID token has expired. Please generate a new one.',
             )
 
