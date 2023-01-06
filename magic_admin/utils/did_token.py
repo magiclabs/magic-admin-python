@@ -1,4 +1,4 @@
-from magic_admin.error import DIDTokenError
+from magic_admin.error import DIDTokenMalformed
 
 
 def parse_public_address_from_issuer(issuer):
@@ -14,7 +14,7 @@ def parse_public_address_from_issuer(issuer):
     try:
         return issuer.split(':')[2]
     except IndexError:
-        raise DIDTokenError(
+        raise DIDTokenMalformed(
             'Given issuer ({}) is malformed. Please make sure it follows the '
             '`did:method-name:method-specific-id` format.'.format(issuer),
         )

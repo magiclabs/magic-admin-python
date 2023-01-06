@@ -2,7 +2,7 @@ from magic_admin.error import APIConnectionError
 from magic_admin.error import APIError
 from magic_admin.error import AuthenticationError
 from magic_admin.error import BadRequestError
-from magic_admin.error import DIDTokenError
+from magic_admin.error import DIDTokenInvalid
 from magic_admin.error import ForbiddenError
 from magic_admin.error import MagicError
 from magic_admin.error import RateLimitingError
@@ -34,9 +34,9 @@ class TestMagicError(MagicErrorBase):
     error_class = MagicError
 
 
-class TestDIDTokenError(MagicErrorBase):
+class TestDIDTokenInvalid(MagicErrorBase):
 
-    error_class = DIDTokenError
+    error_class = DIDTokenInvalid
 
 
 class TestAPIConnectionError(MagicErrorBase):

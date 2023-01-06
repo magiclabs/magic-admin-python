@@ -1,6 +1,6 @@
 import pytest
 
-from magic_admin.error import DIDTokenError
+from magic_admin.error import DIDTokenMalformed
 from magic_admin.utils.did_token import construct_issuer_with_public_address
 from magic_admin.utils.did_token import parse_public_address_from_issuer
 from testing.data.did_token import issuer
@@ -15,7 +15,7 @@ class TestDIDToken:
         assert parse_public_address_from_issuer(issuer) == public_address
 
     def test_parse_public_address_from_issuer_raises_error(self):
-        with pytest.raises(DIDTokenError) as e:
+        with pytest.raises(DIDTokenMalformed) as e:
             parse_public_address_from_issuer(self.malformed_issuer)
 
         assert str(e.value) == \
