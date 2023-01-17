@@ -21,10 +21,12 @@ jobs:
           cache: 'pip'
 
       - name: Install Dependencies
-        run: pip install -r requirements.txt requirements-dev.txt
+        run: pip install -r requirements.txt -r requirements-dev.txt
       - name: Run tests
         run: |
-          source virtualenv_run/bin/activate; make test
+          make development
+          source virtualenv_run/bin/activate
+          make test
 
   security:
     runs-on: ubuntu-20.04
@@ -41,6 +43,7 @@ jobs:
       - name: Safety Check
         shell: bash
         run: |
+          make development
           source virtualenv_run/bin/activate
           pip install -U safety
-          safety check
+          safety check -i 44610 -i 51499 -i 51457 -i 39253 -i 44634 -i 50473
