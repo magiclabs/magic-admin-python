@@ -22,6 +22,7 @@ jobs:
 
       - name: Install Dependencies
         run: pip install -r requirements.txt -r requirements-dev.txt
+
       - name: Run tests
         run: |
           make development
@@ -39,6 +40,10 @@ jobs:
         with:
           python-version: '3.6'
           cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
 
       - name: Safety Check
         shell: bash
