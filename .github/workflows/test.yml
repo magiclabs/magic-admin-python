@@ -1,0 +1,53 @@
+name: Test
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    name: Run tests
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.6'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Run tests
+        run: |
+          make development
+          source virtualenv_run/bin/activate
+          make test
+
+  security:
+    runs-on: ubuntu-20.04
+    name: Run style/security checks
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.6'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Safety Check
+        shell: bash
+        run: |
+          make development
+          source virtualenv_run/bin/activate
+          pip install -U safety
+          safety check -i 44610 -i 51499 -i 51457 -i 39253 -i 44634 -i 50473
