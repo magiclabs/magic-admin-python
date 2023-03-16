@@ -50,4 +50,4 @@ jobs:
           make development
           source virtualenv_run/bin/activate
           pip install -U safety
-          safety check -i 44610 -i 51499 -i 51457 -i 39253 -i 44634 -i 50473 -i 53269
+          safety check -i 44610 -i 51499 -i 51457 -i 39253 -i 44634 -i 50473 -i 52495 -i 53269
