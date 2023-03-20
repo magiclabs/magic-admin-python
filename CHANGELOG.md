@@ -12,6 +12,12 @@
 
 - <PR-#ISSUE> ...
 
+## `0.3.0` - 03/20/2023
+
+#### Added
+
+- PR-#66: Create paths for minting an NFT through magic delivery service.
+
 ## `0.2.0` - 1/04/2023
 
 #### Added
