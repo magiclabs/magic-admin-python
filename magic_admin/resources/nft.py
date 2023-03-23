@@ -1,8 +1,9 @@
 """Module for the Mint resource component. Mint ERC721 and ERC1155 tokens."""
+
 from magic_admin.resources.base import ResourceComponent
 
 
-class Mint(ResourceComponent):
+class NFT(ResourceComponent):
     """Minting resource component."""
 
     v1_start_mint721 = '/v1/admin/nft/mint/721_mint'
@@ -22,10 +23,10 @@ class Mint(ResourceComponent):
             destination_address (str): The address to mint the tokens to.
 
         Returns:
-            dict: {
+            {
                 data: {
                     request_id: str,
-                },
+                }, # noqa: RST203
                 status: str,
                 error_code: str,
                 message: str,
