@@ -58,7 +58,15 @@ class NFT(ResourceComponent):
             destination_address (str): The address to mint the tokens to.
 
         Returns:
-            dict: The response from the API.
+            {
+                data: {
+                    request_id: str,
+                }, # noqa: RST203
+                status: str,
+                error_code: str,
+                message: str,
+            }
+
         """
         return self.request(
             'post',
