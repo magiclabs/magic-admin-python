@@ -1,5 +1,4 @@
 """Module for the Mint resource component. Mint ERC721 and ERC1155 tokens."""
-
 from magic_admin.resources.base import ResourceComponent
 
 
