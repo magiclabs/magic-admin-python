@@ -22,7 +22,14 @@ class Mint(ResourceComponent):
             destination_address (str): The address to mint the tokens to.
 
         Returns:
-            dict: The response from the API.
+            dict: {
+                data: {
+                    request_id: str,
+                },
+                status: str,
+                error_code: str,
+                message: str,
+            }
 
         """
         return self.request(
