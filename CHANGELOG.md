@@ -13,6 +13,12 @@
 - <PR-#ISSUE> ...
 
 
+## `0.3.2` - 03/21/2023
+
+#### Added
+
+- PR-#69: Patch bad formatting of request
+
 ## `0.3.1` - 03/21/2023
 
 #### Added

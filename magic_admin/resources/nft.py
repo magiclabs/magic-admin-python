@@ -35,7 +35,7 @@ class NFT(ResourceComponent):
         return self.request(
             'post',
             self.v1_start_mint721,
-            params={
+            data={
                 'contract_id': contract_id,
                 'quantity': quantity,
                 'destination_address': destination_address,
@@ -71,7 +71,7 @@ class NFT(ResourceComponent):
         return self.request(
             'post',
             self.v1_start_mint1155,
-            params={
+            data={
                 'contract_id': contract_id,
                 'quantity': quantity,
                 'token_id': token_id,

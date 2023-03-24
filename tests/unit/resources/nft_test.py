@@ -37,7 +37,7 @@ class TestNFT:  # noqa: WPS306
         self.nft.request.assert_called_once_with(
             'post',
             self.nft.v1_start_mint721,
-            params={
+            data={
                 'contract_id': self.contract_id,
                 'quantity': self.quantity,
                 'destination_address': self.destination_address,
@@ -58,7 +58,7 @@ class TestNFT:  # noqa: WPS306
         self.nft.request.assert_called_once_with(
             'post',
             self.nft.v1_start_mint1155,
-            params={
+            data={
                 'contract_id': self.contract_id,
                 'quantity': self.quantity,
                 'token_id': self.token_id,
