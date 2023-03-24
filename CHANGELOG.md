@@ -12,6 +12,13 @@
 
 - <PR-#ISSUE> ...
 
+
+## `0.3.1` - 03/21/2023
+
+#### Added
+
+- PR-#67: Patch module not found fixed for new nft module
+
 ## `0.3.0` - 03/20/2023
 
 #### Added
