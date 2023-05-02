@@ -13,6 +13,13 @@
 - <PR-#ISSUE> ...
 
 
+## `0.3.3` - 05/02/2023
+
+#### Changed
+
+- PR-#77: Removing NFT functionality, clients will interact with the NFT API directly via API calls.
+
+
 ## `0.3.2` - 03/21/2023
 
 #### Added
