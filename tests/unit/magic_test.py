@@ -15,23 +15,38 @@ class TestMagic:
     api_secret_key = 'troll_goat'
 
     @pytest.fixture(autouse=True)
+    def setup(self):
+        self.mocked_resource_component = mock.Mock()
+        self.mocked_request_client = mock.Mock(
+            request=mock.Mock(
+                return_value=mock.Mock(
+                    data={
+                        'client_id': '1234',
+                    },
+                ),
+            ),
+        )
+        with mock.patch(
+            'magic_admin.magic.ResourceComponent',
+            return_value=self.mocked_resource_component,
+        ), mock.patch(
+            'magic_admin.magic.RequestsClient',
+            return_value=self.mocked_request_client,
+        ):
+            yield
+
+    @pytest.fixture(autouse=True)
     def teardown(self):
         yield
         magic_admin.api_secret_key = None
 
     def test_init(self):
-        mocked_rc = mock.Mock()
-
         with mock.patch(
-            'magic_admin.magic.ResourceComponent',
-            return_value=mocked_rc,
-        ) as mock_resource_component, mock.patch(
             'magic_admin.magic.Magic._set_api_secret_key',
         ) as mock_set_api_secret_key:
             Magic(api_secret_key=self.api_secret_key)
 
-        mock_resource_component.assert_called_once_with()
-        mocked_rc.setup_request_client.setup_request_client(
+        self.mocked_resource_component.setup_request_client.assert_called_once_with(
             RETRIES,
             TIMEOUT,
             BACKOFF_FACTOR,

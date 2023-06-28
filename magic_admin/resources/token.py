@@ -4,6 +4,7 @@ import json
 from eth_account.messages import defunct_hash_message
 from web3.auto import w3
 
+import magic_admin
 from magic_admin.error import DIDTokenExpired
 from magic_admin.error import DIDTokenInvalid
 from magic_admin.error import DIDTokenMalformed
@@ -171,4 +172,9 @@ class Token(ResourceComponent):
                 message='Given DID token cannot be used at this time. Please '
                 'check the "nbf" field and regenerate a new token with a suitable '
                 'value.',
+            )
+
+        if claim['aud'] != magic_admin.client_id:
+            raise DIDTokenInvalid(
+                message='"aud" field does not match your client. Please check your secret key.',
             )

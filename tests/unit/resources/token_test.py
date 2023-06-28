@@ -3,6 +3,7 @@ from collections import namedtuple
 from unittest import mock
 
 import pytest
+from pretend import stub
 
 from magic_admin.error import DIDTokenExpired
 from magic_admin.error import DIDTokenInvalid
@@ -164,6 +165,7 @@ class TestTokenValidate:
         claim = {
             'ext': 8084,
             'nbf': 6666,
+            'aud': '1234',
         }
 
         with mock.patch.object(
@@ -185,7 +187,10 @@ class TestTokenValidate:
         ) as epoch_time_now, mock.patch(
             'magic_admin.resources.token.apply_did_token_nbf_grace_period',
             return_value=claim['nbf'],
-        ) as apply_did_token_nbf_grace_period:
+        ) as apply_did_token_nbf_grace_period, mock.patch(
+            'magic_admin.resources.token.magic_admin',
+            new=stub(client_id='1234'),
+        ):
             yield self.mock_funcs(
                 proof,
                 claim,
