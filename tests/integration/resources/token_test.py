@@ -1,3 +1,7 @@
+from unittest import mock
+
+from pretend import stub
+
 from magic_admin.resources.token import Token
 from testing.data.did_token import claim
 from testing.data.did_token import future_did_token
@@ -21,4 +25,8 @@ class TestToken:
         assert Token.get_public_address(future_did_token) == public_address
 
     def test_validate(self):
-        Token.validate(future_did_token)
+        with mock.patch(
+            'magic_admin.resources.token.magic_admin',
+            new=stub(client_id='did:magic:731848cc-084e-41ff-bbdf-7f103817ea6b'),
+        ):
+            Token.validate(future_did_token)

@@ -1,3 +1,5 @@
+from unittest import mock
+
 import pytest
 
 import magic_admin
@@ -9,6 +11,21 @@ from magic_admin.resources.base import ResourceComponent
 class TestMagic:
 
     api_secret_key = 'troll_goat'
+
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.mocked_rc = mock.Mock(
+            request=mock.Mock(
+                return_value=mock.Mock(
+                    data={
+                        'client_id': '1234',
+                    },
+                ),
+            ),
+        )
+        # self.mocked_rc.request=
+        with mock.patch('magic_admin.magic.RequestsClient', return_value=self.mocked_rc):
+            yield
 
     def test_init_with_secret_key(self):
         Magic(api_secret_key=self.api_secret_key)
