@@ -24,7 +24,7 @@ pretend==1.0.8
 prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 py==1.8.1
-Pygments==2.7.4
+Pygments==2.15.0
 pyparsing==2.4.7
 pytest==5.4.1
 pytest-cov==2.8.1
