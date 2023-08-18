@@ -9,7 +9,7 @@ identify==1.4.14
 importlib-metadata==1.6.0
 importlib-resources==1.4.0
 ipdb==0.12.3
-ipython==7.11.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 jedi==0.16.0
 more-itertools==8.2.0
