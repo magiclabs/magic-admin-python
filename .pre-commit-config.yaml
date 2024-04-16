@@ -3,28 +3,28 @@ repos:
     rev: v2.5.0
     hooks:
     -   id: flake8
-        language_version: python3.6
+        language_version: python3
         args: [
             --max-line-length=100,
             # We did some funky thing in __init__.py, skip them for now.
             --exclude=*__init__.py
         ]
     -   id: trailing-whitespace
-        language_version: python3.6
+        language_version: python3
     -   id: end-of-file-fixer
-        language_version: python3.6
+        language_version: python3
     -   id: check-merge-conflict
-        language_version: python3.6
+        language_version: python3
     -   id: requirements-txt-fixer
-        language_version: python3.6
+        language_version: python3
     -   id: name-tests-test
-        language_version: python3.6
+        language_version: python3
     -   id: double-quote-string-fixer
-        language_version: python3.6
+        language_version: python3
     -   id: forbid-new-submodules
-        language_version: python3.6
+        language_version: python3
     -   id: check-yaml
-        language_version: python3.6
+        language_version: python3
         files: (\.(yaml|yml|eyaml))$
     -   id: check-json
         files: \.(jshintrc|json)$
@@ -32,7 +32,7 @@ repos:
     rev: v1.5.1
     hooks:
     -   id: autopep8
-        language_version: python3.6
+        language_version: python3
 -   repo: https://github.com/asottile/add-trailing-comma
     rev: v2.0.1
     hooks:
@@ -41,11 +41,11 @@ repos:
     rev: v2.2.0
     hooks:
     -   id: reorder-python-imports
-        language_version: python3.6
+        language_version: python3
 -   repo: https://github.com/asottile/pyupgrade
     rev: v2.1.1
     hooks:
     -   id: pyupgrade
         args:
         - --py3-plus
-        language_version: python3.6
+        language_version: python3

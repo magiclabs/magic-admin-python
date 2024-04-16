@@ -151,8 +151,8 @@ class TestTokenValidate:
             'proof',
             'claim',
             'decode',
-            'recoverHash',
-            'defunct_hash_message',
+            'recover_message',
+            'encode_defunct',
             'get_public_address',
             'epoch_time_now',
             'apply_did_token_nbf_grace_period',
@@ -173,10 +173,10 @@ class TestTokenValidate:
             'decode',
             return_value=(proof, claim),
         ) as decode, mock.patch(
-            'magic_admin.resources.token.w3.eth.account.recoverHash',
+            'magic_admin.resources.token.w3.eth.account.recover_message',
             return_value=self.public_address,
         ) as recoverHash, mock.patch(
-            'magic_admin.resources.token.defunct_hash_message',
+            'magic_admin.resources.token.encode_defunct',
         ) as defunct_hash_message, mock.patch.object(
             Token,
             'get_public_address',
