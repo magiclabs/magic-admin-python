@@ -53,14 +53,14 @@ setup(
     ),
     zip_safe=False,
     install_requires=load_requirements(),
-    python_requires='>=3.6',
+    python_requires='>=3.11',
     project_urls={
         'Website': 'https://magic.link',
     },
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.11',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
