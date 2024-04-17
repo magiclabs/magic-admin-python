@@ -1,6 +1,8 @@
-# Magic Admin Python SDK
+# Revisited Magic Admin Python SDK
 
-The Magic Admin Python SDK provides convenient ways for developers to interact with Magic API endpoints and an array of utilities to handle [DID Token](https://magic.link/docs/auth/introduction/decentralized-id).
+The (Cool) Magic Admin Python SDK provides convenient ways for developers to interact with Magic API endpoints and an array of utilities to handle [DID Token](https://magic.link/docs/auth/introduction/decentralized-id).
+
+This package has been revisited from the original to support newer versions of python.
 
 ## Table of Contents
 
@@ -19,20 +21,14 @@ You can directly install the SDK with:
 pip:
 
 ```
-pip install magic-admin
+pip install cool-magic-admin
 ```
 
-conda:
-
-```
-conda install magic-admin
-```
 
 ### Prerequisites
 
-- Python 3.6
+- Python 3.9+
 
-**Note**: This package has only been tested with `Python 3.6`. `Python 3.7` and `Python 3.8` have not been tested yet. We will get to it very soon. Support for `Python 2.7+` will not be actively worked on. If you are interested using this package with earlier versions of Python, please create a ticket and let us know :)
 
 ## Quick Start
 Before you start, you will need an API secret key. You can get one from the [Magic Dashboard](https://dashboard.magic.link/). Once you have the API secret key, you can instantiate a Magic object.

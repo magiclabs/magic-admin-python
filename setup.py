@@ -31,9 +31,9 @@ def load_requirements():
 
 
 setup(
-    name='magic-admin',
+    name='cool-magic-admin',
     version=read_version(),
-    description='Magic Python Library',
+    description='Magic Python Library Revised to support python versions 3.9 and above.',
     long_description=load_readme(),
     long_description_content_type='text/markdown',
     author='Magic',
