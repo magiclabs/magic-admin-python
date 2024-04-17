@@ -1,7 +1,7 @@
 import base64
 import json
 
-from eth_account.messages import defunct_hash_message
+from eth_account.messages import encode_defunct
 from web3.auto import w3
 
 import magic_admin
@@ -147,8 +147,8 @@ class Token(ResourceComponent):
                 'with a suitable value.',
             )
 
-        recovered_address = w3.eth.account.recoverHash(
-            defunct_hash_message(
+        recovered_address = w3.eth.account.recover_message(
+            encode_defunct(
                 text=json.dumps(claim, separators=(',', ':')),
             ),
             signature=proof,

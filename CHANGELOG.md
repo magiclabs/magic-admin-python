@@ -12,6 +12,16 @@
 
 - <PR-#ISSUE> ...
 
+## `1.2.0` - 04/16/2024
+
+#### Changed
+
+- Support for up to python 3.11:
+  - Bump web3 dependencies, bump some dev dependencies.
+  - Replace deprecated eth_account methods on the account recovery.
+  - Bump websockets to 10.0 to support python 3.10+
+
+
 ## `1.0.0` - 07/05/2023
 
 #### Added
