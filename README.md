@@ -4,16 +4,18 @@ The Magic Admin Python SDK provides convenient ways for developers to interact w
 
 ## Table of Contents
 
-* [Documentation](#documentation)
-* [Quick Start](#quick-start)
-* [Development](#development)
-* [Changelog](#changelog)
-* [License](#license)
+- [Documentation](#documentation)
+- [Quick Start](#quick-start)
+- [Development](#development)
+- [Changelog](#changelog)
+- [License](#license)
 
 ## Documentation
+
 See the [Magic doc](https://magic.link/docs/auth/api-reference/server-side-sdks/python)!
 
 ## Installation
+
 You can directly install the SDK with:
 
 pip:
@@ -30,11 +32,12 @@ conda install magic-admin
 
 ### Prerequisites
 
-- Python 3.6
+- Python 3.10+
 
-**Note**: This package has only been tested with `Python 3.6`. `Python 3.7` and `Python 3.8` have not been tested yet. We will get to it very soon. Support for `Python 2.7+` will not be actively worked on. If you are interested using this package with earlier versions of Python, please create a ticket and let us know :)
+**Note**: This package supports Python 3.10 and higher. The development environment uses Python 3.13.
 
 ## Quick Start
+
 Before you start, you will need an API secret key. You can get one from the [Magic Dashboard](https://dashboard.magic.link/). Once you have the API secret key, you can instantiate a Magic object.
 
 ```
@@ -58,6 +61,7 @@ magic = Magic()
 **Note**: The argument passed to the `Magic(...)` object takes precedence over the environment variable.
 
 ### Configure Network Strategy
+
 The `Magic` object also takes in `retries`, `timeout` and `backoff_factor` as optional arguments at the object instantiation time so you can override those values for your application setup.
 
 ```
@@ -65,6 +69,7 @@ magic = Magic(retries=5, timeout=10, backoff_factor=0.03)
 ```
 
 ## Development
+
 We would love to have you contributing to this SDK. To get started, you can clone this repository and create a virtualenv.
 
 ```
@@ -102,7 +107,9 @@ pre-commit run
 Please also see our [CONTRIBUTING](CONTRIBUTING.md) guide for other information.
 
 ## Changelog
+
 See [Changelog](CHANGELOG.md)
 
 ## License
+
 See [License](LICENSE.txt)
