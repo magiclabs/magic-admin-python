@@ -6,7 +6,7 @@ development: virtualenv_run install_prod_requirements install_dev_requirements i
 
 .PHONY: virtualenv_run
 virtualenv_run:
-	virtualenv -p python3.11 virtualenv_run
+	virtualenv -p python3.13 virtualenv_run
 	virtualenv_run/bin/pip install --upgrade pip
 
 .PHONY: install_prod_requirements
