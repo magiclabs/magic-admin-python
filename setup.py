@@ -53,7 +53,7 @@ setup(
     ),
     zip_safe=False,
     install_requires=load_requirements(),
-    python_requires=">=3.10",
+    python_requires=">=3.11",
     project_urls={
         "Website": "https://magic.link",
     },

@@ -32,9 +32,9 @@ conda install magic-admin
 
 ### Prerequisites
 
-- Python 3.10+
+- Python 3.11+
 
-**Note**: This package supports Python 3.10 and higher. The development environment uses Python 3.13.
+**Note**: This package supports Python 3.11 and higher. The development environment uses Python 3.13.
 
 ## Quick Start
 
