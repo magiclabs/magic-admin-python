@@ -14,8 +14,7 @@ BACKOFF_FACTOR = 0.02
 
 
 class Magic:
-
-    v1_client_info = base_url + '/v1/admin/client/get'
+    v1_client_info = base_url + "/v1/admin/client/get"
 
     def __getattr__(self, attribute_name):
         try:
@@ -38,12 +37,16 @@ class Magic:
         self._resource.setup_request_client(retries, timeout, backoff_factor)
         self._set_api_secret_key(api_secret_key)
         init_requests_client = RequestsClient(retries, timeout, backoff_factor)
-        magic_admin.client_id = client_id or \
-            init_requests_client.request('get', self.v1_client_info).data['client_id']
+        magic_admin.client_id = (
+            client_id
+            or init_requests_client.request("get", self.v1_client_info).data[
+                "client_id"
+            ]
+        )
 
     def _set_api_secret_key(self, api_secret_key):
         magic_admin.api_secret_key = api_secret_key or os.environ.get(
-            'MAGIC_API_SECRET_KEY',
+            "MAGIC_API_SECRET_KEY",
         )
 
         if magic_admin.api_secret_key is None:

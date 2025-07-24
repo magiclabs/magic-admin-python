@@ -6,15 +6,14 @@ from magic_admin.resources.base import ResourceComponent
 
 
 class TestResourceComponent:
-
     retries = 1
     timeout = 2
     backoff_factor = 3
 
-    method = 'get'
-    url_path = '/troll/goat'
-    params = 'params'
-    data = 'data'
+    method = "get"
+    url_path = "/troll/goat"
+    params = "params"
+    data = "data"
 
     @pytest.fixture(autouse=True)
     def setup(self):
@@ -22,7 +21,7 @@ class TestResourceComponent:
 
     def test_setup_request_client(self):
         with mock.patch(
-            'magic_admin.resources.base.RequestsClient',
+            "magic_admin.resources.base.RequestsClient",
         ) as mock_request_client:
             self.rc.setup_request_client(
                 self.retries,
@@ -36,11 +35,12 @@ class TestResourceComponent:
             self.backoff_factor,
         )
         for resource in self.rc._registry.values():
-            assert getattr(resource, '_request_client') == \
-                mock_request_client.return_value
+            assert (
+                getattr(resource, "_request_client") == mock_request_client.return_value
+            )
 
     def test_construct_url(self):
-        assert self.rc._construct_url(self.url_path) == '{}{}'.format(
+        assert self.rc._construct_url(self.url_path) == "{}{}".format(
             self.rc._base_url,
             self.url_path,
         )
@@ -50,13 +50,16 @@ class TestResourceComponent:
 
         with mock.patch.object(
             self.rc,
-            '_construct_url',
+            "_construct_url",
         ) as mock_construct_url:
-            assert self.rc.request(
-                self.method,
-                self.url_path,
-                params=self.params,
-                data=self.data,
-            ) == self.rc._request_client.request.return_value
+            assert (
+                self.rc.request(
+                    self.method,
+                    self.url_path,
+                    params=self.params,
+                    data=self.data,
+                )
+                == self.rc._request_client.request.return_value
+            )
 
         mock_construct_url.assert_called_once_with(self.url_path)

@@ -19,7 +19,6 @@ from magic_admin.response import MagicResponse
 
 
 class RequestsClient:
-
     def __init__(self, retries, timeout, backoff_factor):
         self._retries = retries
         self._timeout = timeout
@@ -32,21 +31,21 @@ class RequestsClient:
         platform_info = {}
 
         for attr, func in [
-            ['platform', platform.platform],
-            ['language_version', platform.python_version],
-            ['uname', platform.uname],
+            ["platform", platform.platform],
+            ["language_version", platform.python_version],
+            ["uname", platform.uname],
         ]:
             try:
                 val = str(func())
             except Exception as e:
-                val = '<{}>'.format(str(e))
+                val = "<{}>".format(str(e))
 
             platform_info[attr] = val
 
         return platform_info
 
     def _setup_request_session(self):
-        """Take advantage of the ``requets.Session``. If client is making several
+        """Take advantage of the ``requests.Session``. If client is making several
         requests to the same host, the underlying TCP connection will be reused,
         which can result in a significant performance increase.
         """
@@ -63,10 +62,10 @@ class RequestsClient:
 
     def _get_request_headers(self):
         user_agent = {
-            'language': 'python',
-            'sdk_version': version.VERSION,
-            'publisher': 'magic',
-            'http_lib': self.__class__.__name__,
+            "language": "python",
+            "sdk_version": version.VERSION,
+            "publisher": "magic",
+            "http_lib": self.__class__.__name__,
             **self._get_platform_info(),
         }
 
@@ -74,8 +73,8 @@ class RequestsClient:
             raise AuthenticationError(api_secret_api_key_missing_message)
 
         return {
-            'X-Magic-Secret-Key': magic_admin.api_secret_key,
-            'User-Agent': json.dumps(user_agent),
+            "X-Magic-Secret-Key": magic_admin.api_secret_key,
+            "User-Agent": json.dumps(user_agent),
         }
 
     def request(self, method, url, params=None, data=None):
@@ -118,22 +117,24 @@ class RequestsClient:
 
         resp_data = resp.json()
         raise error_class(
-            http_status=resp_data.get('status'),
+            http_status=resp_data.get("status"),
             http_code=status_code,
-            http_resp_data=resp_data.get('data'),
-            http_message=resp_data.get('message'),
-            http_error_code=resp_data.get('error_code'),
+            http_resp_data=resp_data.get("data"),
+            http_message=resp_data.get("message"),
+            http_error_code=resp_data.get("error_code"),
             http_request_params=request_params,
             http_request_data=request_data,
             http_method=resp.request.method,
         )
 
     def _handle_request_error(self, e):
-        message = 'Unexpected error thrown while communicating to Magic. ' \
-            'Please reach out to support@magic.link if the problem continues. ' \
-            'Error message: {error_class} was raised - {error_message}'.format(
+        message = (
+            "Unexpected error thrown while communicating to Magic. "
+            "Please reach out to support@magic.link if the problem continues. "
+            "Error message: {error_class} was raised - {error_message}".format(
                 error_class=e.__class__.__name__,
-                error_message=str(e) or 'no error message.',
+                error_message=str(e) or "no error message.",
             )
+        )
 
         raise APIConnectionError(message)

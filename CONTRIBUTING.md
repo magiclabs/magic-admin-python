@@ -6,7 +6,7 @@ Please note we have a **code of conduct**, please follow it in all your interact
 
 ## Setting up for Local Development
 
-1. Fork this repostiory.
+1. Fork this repository.
 2. Clone your fork.
 3. Create a new branch in your local repository with the following pattern:
 
@@ -126,7 +126,7 @@ Violating these terms may lead to a permanent ban.
 #### 4. Permanent Ban
 
 **Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
+standards, including sustained inappropriate behavior, harassment of an
 individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within

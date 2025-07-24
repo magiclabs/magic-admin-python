@@ -8,8 +8,7 @@ from testing.data.did_token import public_address
 
 
 class TestDIDToken:
-
-    malformed_issuer = 'troll_goat'
+    malformed_issuer = "troll_goat"
 
     def test_parse_public_address_from_issuer(self):
         assert parse_public_address_from_issuer(issuer) == public_address
@@ -18,9 +17,11 @@ class TestDIDToken:
         with pytest.raises(DIDTokenMalformed) as e:
             parse_public_address_from_issuer(self.malformed_issuer)
 
-        assert str(e.value) == \
-            'Given issuer ({}) is malformed. Please make sure it follows the ' \
-            '`did:method-name:method-specific-id` format.'.format(self.malformed_issuer)
+        assert (
+            str(e.value)
+            == "Given issuer ({}) is malformed. Please make sure it follows the "
+            "`did:method-name:method-specific-id` format.".format(self.malformed_issuer)
+        )
 
     def test_construct_issuer_with_public_address(self):
         assert issuer == construct_issuer_with_public_address(public_address)

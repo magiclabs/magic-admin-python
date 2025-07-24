@@ -11,7 +11,6 @@ from testing.data.did_token import public_address
 
 
 class TestUser:
-
     metadata_with_wallets = stub(
         data=stub(
             email=sentinel.email,
@@ -59,7 +58,7 @@ class TestUser:
     @pytest.fixture
     def mock_construct_issuer_with_public_address(self, mocker):
         return mocker.patch(
-            'magic_admin.resources.user.construct_issuer_with_public_address',
+            "magic_admin.resources.user.construct_issuer_with_public_address",
             return_value=sentinel.public_address,
         )
 
@@ -68,9 +67,12 @@ class TestUser:
             return_value=self.metadata_no_wallets,
         )
 
-        assert self.user.get_metadata_by_issuer(
-            sentinel.issuer,
-        ) == self.metadata_no_wallets
+        assert (
+            self.user.get_metadata_by_issuer(
+                sentinel.issuer,
+            )
+            == self.metadata_no_wallets
+        )
 
         self.user.get_metadata_by_issuer_and_wallet.assert_called_once_with(
             sentinel.issuer,
@@ -80,26 +82,34 @@ class TestUser:
     def test_get_metadata_by_issuer_and_any_wallet(self):
         self.user.request = mock.Mock(return_value=self.metadata_with_wallets)
 
-        assert self.user.get_metadata_by_issuer_and_wallet(
-            sentinel.issuer,
-            WalletType.ANY,
-        ) == self.metadata_with_wallets
+        assert (
+            self.user.get_metadata_by_issuer_and_wallet(
+                sentinel.issuer,
+                WalletType.ANY,
+            )
+            == self.metadata_with_wallets
+        )
 
         self.user.request.assert_called_once_with(
-            'get',
+            "get",
             self.user.v1_user_info,
             params={
-                'issuer': sentinel.issuer,
-                'wallet_type': WalletType.ANY,
+                "issuer": sentinel.issuer,
+                "wallet_type": WalletType.ANY,
             },
         )
 
     def test_get_metadata_by_token(self):
-        self.user.get_metadata_by_issuer = mock.Mock(return_value=self.metadata_no_wallets)
+        self.user.get_metadata_by_issuer = mock.Mock(
+            return_value=self.metadata_no_wallets
+        )
 
-        assert self.user.get_metadata_by_token(
-            future_did_token,
-        ) == self.user.get_metadata_by_issuer.return_value
+        assert (
+            self.user.get_metadata_by_token(
+                future_did_token,
+            )
+            == self.user.get_metadata_by_issuer.return_value
+        )
 
         self.user.Token.get_issuer.assert_called_once_with(future_did_token)
         self.user.get_metadata_by_issuer.assert_called_once_with(
@@ -111,10 +121,13 @@ class TestUser:
             return_value=self.metadata_with_wallets,
         )
 
-        assert self.user.get_metadata_by_token_and_wallet(
-            future_did_token,
-            WalletType.ANY,
-        ) == self.user.get_metadata_by_issuer_and_wallet.return_value
+        assert (
+            self.user.get_metadata_by_token_and_wallet(
+                future_did_token,
+                WalletType.ANY,
+            )
+            == self.user.get_metadata_by_issuer_and_wallet.return_value
+        )
 
         self.user.Token.get_issuer.assert_called_once_with(future_did_token)
         self.user.get_metadata_by_issuer_and_wallet.assert_called_once_with(
@@ -126,11 +139,16 @@ class TestUser:
         self,
         mock_construct_issuer_with_public_address,
     ):
-        self.user.get_metadata_by_issuer = mock.Mock(return_value=self.metadata_no_wallets)
+        self.user.get_metadata_by_issuer = mock.Mock(
+            return_value=self.metadata_no_wallets
+        )
 
-        assert self.user.get_metadata_by_public_address(
-            sentinel.public_address,
-        ) == self.user.get_metadata_by_issuer.return_value
+        assert (
+            self.user.get_metadata_by_public_address(
+                sentinel.public_address,
+            )
+            == self.user.get_metadata_by_issuer.return_value
+        )
 
         mock_construct_issuer_with_public_address.assert_called_once_with(
             sentinel.public_address,
@@ -147,10 +165,13 @@ class TestUser:
             return_value=self.metadata_with_wallets,
         )
 
-        assert self.user.get_metadata_by_public_address_and_wallet(
-            sentinel.public_address,
-            WalletType.ANY,
-        ) == self.user.get_metadata_by_issuer_and_wallet.return_value
+        assert (
+            self.user.get_metadata_by_public_address_and_wallet(
+                sentinel.public_address,
+                WalletType.ANY,
+            )
+            == self.user.get_metadata_by_issuer_and_wallet.return_value
+        )
 
         mock_construct_issuer_with_public_address.assert_called_once_with(
             sentinel.public_address,
@@ -168,10 +189,10 @@ class TestUser:
         )
 
         self.user.request.assert_called_once_with(
-            'post',
+            "post",
             self.user.v2_user_logout,
             data={
-                'issuer': sentinel.issuer,
+                "issuer": sentinel.issuer,
             },
         )
 
@@ -181,9 +202,12 @@ class TestUser:
     ):
         self.user.logout_by_issuer = mock.Mock()
 
-        assert self.user.logout_by_public_address(
-            public_address,
-        ) == self.user.logout_by_issuer.return_value
+        assert (
+            self.user.logout_by_public_address(
+                public_address,
+            )
+            == self.user.logout_by_issuer.return_value
+        )
 
         mock_construct_issuer_with_public_address.assert_called_once_with(
             public_address,
@@ -195,9 +219,12 @@ class TestUser:
     def test_logout_by_token(self):
         self.user.logout_by_issuer = mock.Mock()
 
-        assert self.user.logout_by_token(
-            future_did_token,
-        ) == self.user.logout_by_issuer.return_value
+        assert (
+            self.user.logout_by_token(
+                future_did_token,
+            )
+            == self.user.logout_by_issuer.return_value
+        )
 
         self.user.Token.get_issuer.assert_called_once_with(future_did_token)
         self.user.logout_by_issuer.assert_called_once_with(

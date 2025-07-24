@@ -9,8 +9,7 @@ from magic_admin.resources.base import ResourceComponent
 
 
 class TestMagic:
-
-    api_secret_key = 'troll_goat'
+    api_secret_key = "troll_goat"
 
     @pytest.fixture(autouse=True)
     def setup(self):
@@ -18,13 +17,15 @@ class TestMagic:
             request=mock.Mock(
                 return_value=mock.Mock(
                     data={
-                        'client_id': '1234',
+                        "client_id": "1234",
                     },
                 ),
             ),
         )
         # self.mocked_rc.request=
-        with mock.patch('magic_admin.magic.RequestsClient', return_value=self.mocked_rc):
+        with mock.patch(
+            "magic_admin.magic.RequestsClient", return_value=self.mocked_rc
+        ):
             yield
 
     def test_init_with_secret_key(self):
@@ -33,7 +34,7 @@ class TestMagic:
         assert magic_admin.api_secret_key == self.api_secret_key
 
     @pytest.mark.parametrize(
-        'resource_name',
+        "resource_name",
         ResourceComponent._registry.keys(),
     )
     def test_init_with_request_client_set_on_resources(self, resource_name):
@@ -42,7 +43,7 @@ class TestMagic:
         assert getattr(magic, resource_name)._request_client
 
     @pytest.mark.parametrize(
-        'resource_name',
+        "resource_name",
         ResourceComponent._registry.keys(),
     )
     def test_gets_resource(self, resource_name):
