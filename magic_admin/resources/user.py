@@ -4,8 +4,8 @@ from magic_admin.utils.did_token import construct_issuer_with_public_address
 
 
 class User(ResourceComponent):
-    v1_user_info = "/v1/admin/auth/user/get"
-    v2_user_logout = "/v2/admin/auth/user/logout"
+    v1_user_info = "/v1/admin/auth/user"
+    v1_user_logout = "/v1/admin/auth/user/logout"
 
     def get_metadata_by_issuer_and_wallet(self, issuer, wallet_type):
         return self.request(
@@ -37,7 +37,7 @@ class User(ResourceComponent):
         return self.get_metadata_by_issuer(self.Token.get_issuer(did_token))
 
     def logout_by_issuer(self, issuer):
-        return self.request("post", self.v2_user_logout, data={"issuer": issuer})
+        return self.request("post", self.v1_user_logout, data={"issuer": issuer})
 
     def logout_by_public_address(self, public_address):
         return self.logout_by_issuer(

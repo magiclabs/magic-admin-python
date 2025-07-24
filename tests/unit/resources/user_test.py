@@ -190,7 +190,7 @@ class TestUser:
 
         self.user.request.assert_called_once_with(
             "post",
-            self.user.v2_user_logout,
+            self.user.v1_user_logout,
             data={
                 "issuer": sentinel.issuer,
             },

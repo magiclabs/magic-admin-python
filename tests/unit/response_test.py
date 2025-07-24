@@ -15,4 +15,4 @@ class TestMagicResponse:
 
         assert resp.content == self.content
         assert resp.status_code == self.status_code
-        assert resp.data == self.resp_data["data"]
+        assert resp.data == self.resp_data

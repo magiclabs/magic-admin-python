@@ -14,7 +14,7 @@ BACKOFF_FACTOR = 0.02
 
 
 class Magic:
-    v1_client_info = base_url + "/v1/admin/client/get"
+    v1_client_info = base_url + "/v1/admin/client"
 
     def __getattr__(self, attribute_name):
         try:

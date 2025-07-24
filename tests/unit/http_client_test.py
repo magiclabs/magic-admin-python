@@ -268,7 +268,7 @@ class TestParseAndConvertToAPIResponse:
         assert isinstance(parsed_resp, MagicResponse)
         assert parsed_resp.content == self.resp.content
         assert parsed_resp.status_code == self.resp.status_code
-        assert parsed_resp.data == self.data["data"]
+        assert parsed_resp.data == self.data
 
     @pytest.mark.parametrize(
         "status_code,error_class",

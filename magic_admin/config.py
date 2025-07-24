@@ -1,4 +1,4 @@
-base_url = "https://api.magic.link"
+base_url = "https://api.toaster.magic.link"
 
 api_secret_api_key_missing_message = (
     "API secret key is missing. Please specify "
