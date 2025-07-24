@@ -18,16 +18,17 @@ EXPECTED_DID_TOKEN_CONTENT_LENGTH = 2
 
 
 class Token(ResourceComponent):
-
-    required_fields = frozenset([
-        'iat',
-        'ext',
-        'nbf',
-        'iss',
-        'sub',
-        'aud',
-        'tid',
-    ])
+    required_fields = frozenset(
+        [
+            "iat",
+            "ext",
+            "nbf",
+            "iss",
+            "sub",
+            "aud",
+            "tid",
+        ]
+    )
 
     @classmethod
     def _check_required_fields(cls, claim):
@@ -46,7 +47,7 @@ class Token(ResourceComponent):
 
         if missing_fields:
             raise DIDTokenMalformed(
-                message='DID token is missing required field(s): {}'.format(
+                message="DID token is missing required field(s): {}".format(
                     sorted(missing_fields),
                 ),
             )
@@ -66,21 +67,21 @@ class Token(ResourceComponent):
         """
         try:
             decoded_did_token = json.loads(
-                base64.urlsafe_b64decode(did_token).decode('utf-8'),
+                base64.urlsafe_b64decode(did_token).decode("utf-8"),
             )
         except Exception as e:
             raise DIDTokenMalformed(
-                message='DID token is malformed. It has to be a based64 encoded '
-                'JSON serialized string. {err} ({msg}).'.format(
+                message="DID token is malformed. It has to be a based64 encoded "
+                "JSON serialized string. {err} ({msg}).".format(
                     err=e.__class__.__name__,
-                    msg=str(e) or '<empty message>',
+                    msg=str(e) or "<empty message>",
                 ),
             )
 
         if len(decoded_did_token) != EXPECTED_DID_TOKEN_CONTENT_LENGTH:
             raise DIDTokenMalformed(
-                message='DID token is malformed. It has to have two parts '
-                '[proof, claim].',
+                message="DID token is malformed. It has to have two parts "
+                "[proof, claim].",
             )
 
         proof = decoded_did_token[0]
@@ -89,10 +90,10 @@ class Token(ResourceComponent):
             claim = json.loads(decoded_did_token[1])
         except Exception as e:
             raise DIDTokenMalformed(
-                message='DID token is malformed. Given claim should be a JSON '
-                'serialized string. {err} ({msg}).'.format(
+                message="DID token is malformed. Given claim should be a JSON "
+                "serialized string. {err} ({msg}).".format(
                     err=e.__class__.__name__,
-                    msg=str(e) or '<empty message>',
+                    msg=str(e) or "<empty message>",
                 ),
             )
 
@@ -113,7 +114,7 @@ class Token(ResourceComponent):
         """
         _, claim = cls.decode(did_token)
 
-        return claim['iss']
+        return claim["iss"]
 
     @classmethod
     def get_public_address(cls, did_token):
@@ -141,15 +142,15 @@ class Token(ResourceComponent):
         """
         proof, claim = cls.decode(did_token)
 
-        if claim['ext'] is None:
+        if claim["ext"] is None:
             raise DIDTokenInvalid(
                 message='Please check the "ext" field and regenerate a new token '
-                'with a suitable value.',
+                "with a suitable value.",
             )
 
         recovered_address = w3.eth.account.recover_message(
             encode_defunct(
-                text=json.dumps(claim, separators=(',', ':')),
+                text=json.dumps(claim, separators=(",", ":")),
             ),
             signature=proof,
         )
@@ -157,24 +158,24 @@ class Token(ResourceComponent):
         if recovered_address != cls.get_public_address(did_token):
             raise DIDTokenInvalid(
                 message='Signature mismatch between "proof" and "claim". Please '
-                'generate a new token with an intended issuer.',
+                "generate a new token with an intended issuer.",
             )
 
         current_time_in_s = epoch_time_now()
 
-        if current_time_in_s > claim['ext']:
+        if current_time_in_s > claim["ext"]:
             raise DIDTokenExpired(
-                message='Given DID token has expired. Please generate a new one.',
+                message="Given DID token has expired. Please generate a new one.",
             )
 
-        if current_time_in_s < apply_did_token_nbf_grace_period(claim['nbf']):
+        if current_time_in_s < apply_did_token_nbf_grace_period(claim["nbf"]):
             raise DIDTokenInvalid(
-                message='Given DID token cannot be used at this time. Please '
+                message="Given DID token cannot be used at this time. Please "
                 'check the "nbf" field and regenerate a new token with a suitable '
-                'value.',
+                "value.",
             )
 
-        if claim['aud'] != magic_admin.client_id:
+        if claim["aud"] != magic_admin.client_id:
             raise DIDTokenInvalid(
                 message='"aud" field does not match your client. Please check your secret key.',
             )

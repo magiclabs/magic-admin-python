@@ -12,13 +12,13 @@ def parse_public_address_from_issuer(issuer):
         public_address (str): An Ethereum public key.
     """
     try:
-        return issuer.split(':')[2]
+        return issuer.split(":")[2]
     except IndexError:
         raise DIDTokenMalformed(
-            'Given issuer ({}) is malformed. Please make sure it follows the '
-            '`did:method-name:method-specific-id` format.'.format(issuer),
+            "Given issuer ({}) is malformed. Please make sure it follows the "
+            "`did:method-name:method-specific-id` format.".format(issuer),
         )
 
 
 def construct_issuer_with_public_address(public_address):
-    return 'did:ethr:{}'.format(public_address)
+    return "did:ethr:{}".format(public_address)

@@ -1,26 +1,24 @@
-## Upcoming Changes
+## `2.0.0` - 2025-07-24
 
-#### Fixed
+#### 🚀 Major Changes
 
-- <PR-#ISSUE> ...
+- **Python Version Support**: Updated minimum Python version to 3.11+
+  - Dropped support for Python 3.10 and below
+  - Development environment uses Python 3.13
 
-#### Changed
+#### 📦 Dependencies
 
-- <PR-#ISSUE> ...
+- Updated core dependencies: `web3` (6→7.12.1), `websockets` (10.0→15.0.1), `requests` (2.32.4)
+- Updated development dependencies: `pre-commit` (3.7.0→4.2.0), `pytest` (8.4.1), `coverage` (7.9.2)
 
-#### Added
+#### 🔧 Improvements
 
-- <PR-#ISSUE> ...
+- Fixed pre-commit hook compatibility issues
+- Improved test coverage and multi-version testing
+- Enhanced documentation and development workflow
+- Updated all configuration files for Python 3.11+ support
 
-## `1.2.0` - 04/16/2024
-
-#### Changed
-
-- Support for up to python 3.11:
-  - Bump web3 dependencies, bump some dev dependencies.
-  - Replace deprecated eth_account methods on the account recovery.
-  - Bump websockets to 10.0 to support python 3.10+
-
+---
 
 ## `1.0.0` - 07/05/2023
 
@@ -30,13 +28,11 @@
   - [Security Enhancement]: Validate `aud` using Magic client ID.
   - Pull client ID from Magic servers if not provided in constructor.
 
-
 ## `0.3.3` - 05/02/2023
 
 #### Changed
 
 - PR-#77: Removing NFT functionality, clients will interact with the NFT API directly via API calls.
-
 
 ## `0.3.2` - 03/21/2023
 

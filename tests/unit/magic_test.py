@@ -11,8 +11,7 @@ from magic_admin.magic import TIMEOUT
 
 
 class TestMagic:
-
-    api_secret_key = 'troll_goat'
+    api_secret_key = "troll_goat"
 
     @pytest.fixture(autouse=True)
     def setup(self):
@@ -21,17 +20,20 @@ class TestMagic:
             request=mock.Mock(
                 return_value=mock.Mock(
                     data={
-                        'client_id': '1234',
+                        "client_id": "1234",
                     },
                 ),
             ),
         )
-        with mock.patch(
-            'magic_admin.magic.ResourceComponent',
-            return_value=self.mocked_resource_component,
-        ), mock.patch(
-            'magic_admin.magic.RequestsClient',
-            return_value=self.mocked_request_client,
+        with (
+            mock.patch(
+                "magic_admin.magic.ResourceComponent",
+                return_value=self.mocked_resource_component,
+            ),
+            mock.patch(
+                "magic_admin.magic.RequestsClient",
+                return_value=self.mocked_request_client,
+            ),
         ):
             yield
 
@@ -42,7 +44,7 @@ class TestMagic:
 
     def test_init(self):
         with mock.patch(
-            'magic_admin.magic.Magic._set_api_secret_key',
+            "magic_admin.magic.Magic._set_api_secret_key",
         ) as mock_set_api_secret_key:
             Magic(api_secret_key=self.api_secret_key)
 
@@ -57,13 +59,13 @@ class TestMagic:
         assert magic_admin.api_secret_key is None
 
         with mock.patch(
-            'os.environ.get',
+            "os.environ.get",
             return_value=self.api_secret_key,
         ) as mock_env_get:
             Magic()
 
         assert magic_admin.api_secret_key == self.api_secret_key
-        mock_env_get.assert_called_once_with('MAGIC_API_SECRET_KEY')
+        mock_env_get.assert_called_once_with("MAGIC_API_SECRET_KEY")
 
     def test_retrieves_secret_key_from_the_passed_in_value(self):
         assert magic_admin.api_secret_key is None
