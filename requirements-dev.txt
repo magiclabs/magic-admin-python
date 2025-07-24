@@ -35,4 +35,4 @@ tox==4.14.0
 traitlets==4.3.3
 virtualenv==20.25
 wcwidth==0.1.9
-zipp==3.1.0
+zipp==3.19.1
