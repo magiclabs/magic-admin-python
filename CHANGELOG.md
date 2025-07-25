@@ -1,4 +1,4 @@
-## `2.0.0` - 2025-07-24
+## `2.0.1` - 2025-07-25
 
 #### 🚀 Major Changes
 
@@ -20,7 +20,7 @@
 
 ---
 
-## `1.0.0` - 07/05/2023
+## `1.0.0` - 2023-07-10
 
 #### Added
 
@@ -28,50 +28,74 @@
   - [Security Enhancement]: Validate `aud` using Magic client ID.
   - Pull client ID from Magic servers if not provided in constructor.
 
-## `0.3.3` - 05/02/2023
+## `0.3.3` - 2023-05-02
 
 #### Changed
 
 - PR-#77: Removing NFT functionality, clients will interact with the NFT API directly via API calls.
 
-## `0.3.2` - 03/21/2023
+## `0.3.2` - 2023-03-24
 
 #### Added
 
 - PR-#69: Patch bad formatting of request
 
-## `0.3.1` - 03/21/2023
+## `0.3.1` - 2023-03-24
 
 #### Added
 
-- PR-#67: Patch module not found fixed for new nft module
+- PR-#67: Patch module not found fixed for new NFT module.
 
-## `0.3.0` - 03/20/2023
+## `0.3.0` - 2023-03-23
 
 #### Added
 
-- PR-#66: Create paths for minting an NFT through magic delivery service.
+- PR-#66: Create paths for minting an NFT through Magic delivery service.
 
-## `0.2.0` - 1/04/2023
+## `0.2.0` - 2023-03-16
 
 #### Added
 
 - PR-#50: Split up DIDTokenError into DIDTokenExpired, DIDTokenMalformed, and DIDTokenInvalid.
 
-## `0.1.0` - 11/30/2022
+## `0.1.0` - 2023-03-16
 
 #### Added
 
-- PR-#46: Support mult-chain wallets in get_metadata calls
+- PR-#46: Support multi-chain wallets in get_metadata calls
 
-## `0.0.5` - 06/23/2021
+## `0.0.5` - 2021-06-23
 
 #### Fixed
 
 - <PR-#34> Relax dependency version requirement constraints
 
-## `0.0.4` - 04/23/2020
+## `0.0.4` - 2020-04-24
 
 #### Changed
 
 - PR-#14: Update external document link.
+
+## `0.0.3` - 2020-04-18
+
+#### Added
+
+- Initial release for 0.0.3. (No details available.)
+
+## `0.0.2` - 2020-04-12
+
+#### Added
+
+- Initial release for 0.0.2. (No details available.)
+
+## `0.0.1` - 2020-04-12
+
+#### Added
+
+- Initial release for 0.0.1. (No details available.)
+
+## `0.0.0.0` - 2020-04-12
+
+#### Added
+
+- Initial release for 0.0.0.0. (No details available.)
