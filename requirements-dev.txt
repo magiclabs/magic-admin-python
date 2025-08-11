@@ -3,9 +3,9 @@ aspy.yaml==1.3.0
 attrs==25.3.0
 backcall==0.2.0
 cfgv==3.4.0
-coverage==7.10.0
+coverage==7.10.3
 decorator==5.2.1
-identify==2.6.12
+identify==2.6.13
 importlib-metadata==8.7.0
 importlib-resources==6.5.2
 ipdb==0.13.13
@@ -19,7 +19,7 @@ parso==0.8.4
 pexpect==4.9.0
 pickleshare==0.7.5
 pluggy==1.6.0
-pre-commit==4.2.0
+pre-commit==4.3.0
 pretend==1.0.9
 prompt-toolkit==3.0.51
 ptyprocess==0.7.0
@@ -31,8 +31,8 @@ pytest-cov==6.2.1
 pytest-mock==3.14.1
 six==1.17.0
 toml==0.10.2
-tox==4.28.1
+tox==4.28.4
 traitlets==5.14.3
-virtualenv==20.32.0
+virtualenv==20.33.1
 wcwidth==0.2.13
 zipp==3.23.0
