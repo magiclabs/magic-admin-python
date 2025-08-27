@@ -1,3 +1,14 @@
+## `2.1.0` - 2025-08-27
+
+#### 🚀 New Features
+
+- **Added Utility Methods for 100% JavaScript SDK Parity**
+  - `utils.parse_authorization_header(header)` - Extract DID tokens from HTTP Authorization headers
+  - `utils.validate_token_ownership(did_token, contract_address, contract_type, rpc_url, token_id?)` - NFT ownership validation for Token Gating
+  - Both methods match the exact functionality available in the JavaScript SDK
+
+---
+
 ## `2.0.1` - 2025-07-25
 
 #### 🚀 Major Changes

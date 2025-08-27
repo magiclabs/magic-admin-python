@@ -28,6 +28,10 @@ class DIDTokenExpired(MagicError):
     pass
 
 
+class ExpectedBearerStringError(MagicError):
+    pass
+
+
 class APIConnectionError(MagicError):
     pass
 
