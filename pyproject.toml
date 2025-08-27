@@ -4,10 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "magic-admin"
-version = "2.1.0"
+version = "2.1.1"
 description = "Magic Python Library"
 readme = "README.md"
-license = {text = "MIT"}
 authors = [
     {name = "Magic", email = "support@magic.link"}
 ]
@@ -17,7 +16,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.11",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+
     "Operating System :: OS Independent",
 ]
 requires-python = ">=3.11"
