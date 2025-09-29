@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "magic-admin"
-version = "2.1.1"
+version = "2.1.2"
 description = "Magic Python Library"
 readme = "README.md"
 authors = [
     {name = "Magic", email = "support@magic.link"}
 ]
 keywords = ["magic", "python", "sdk"]
+license = {text = "MIT"}
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Programming Language :: Python",
