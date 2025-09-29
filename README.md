@@ -4,11 +4,11 @@
 [![PyPI version](https://badge.fury.io/py/magic-admin.svg)](https://badge.fury.io/py/magic-admin)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
 
-The Magic Admin Python SDK provides a simple and powerful way to integrate Magic's authentication system into your Python applications. Handle [DID Tokens](https://magic.link/docs/auth/introduction/decentralized-id) and interact with Magic API endpoints with ease.
+The Magic Admin Python SDK provides a simple and powerful way to integrate Magic's authentication system into your Python applications. Handle [DID Tokens](https://docs.magic.link/embedded-wallets/authentication/features/decentralized-id#decentralized-id-did-tokens) and interact with Magic API endpoints with ease.
 
 ## 📚 Documentation
 
-📖 **Full Documentation**: [Magic Python SDK Docs](https://magic.link/docs/auth/api-reference/server-side-sdks/python)
+📖 **Full Documentation**: [Magic Python SDK Docs](https://docs.magic.link/embedded-wallets/sdk/server-side/python)
 
 ## 🚀 Quick Start
 
@@ -18,8 +18,8 @@ The Magic Admin Python SDK provides a simple and powerful way to integrate Magic
 # Using pip
 pip install magic-admin
 
-# Using conda
-conda install magic-admin
+# Using uv
+uv add magic-admin
 ```
 
 ### Basic Usage
@@ -147,7 +147,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
 
 ## 🔗 Links
 
-- [Magic Documentation](https://magic.link/docs)
-- [Magic Dashboard](https://dashboard.magic.link/)
-- [Magic Python SDK Docs](https://magic.link/docs/auth/api-reference/server-side-sdks/python)
-- [DID Token Documentation](https://magic.link/docs/auth/introduction/decentralized-id)
+- [Magic Documentation](https://docs.magic.link)
+- [Magic Dashboard](https://dashboard.magic.link)
+- [Magic Python SDK Docs](https://docs.magic.link/embedded-wallets/sdk/server-side/python)
+- [DID Token Documentation](https://docs.magic.link/embedded-wallets/authentication/features/decentralized-id#decentralized-id-did-tokens)
