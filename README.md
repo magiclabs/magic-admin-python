@@ -2,7 +2,7 @@
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![PyPI version](https://badge.fury.io/py/magic-admin.svg)](https://badge.fury.io/py/magic-admin)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/license/mit)
 
 The Magic Admin Python SDK provides a simple and powerful way to integrate Magic's authentication system into your Python applications. Handle [DID Tokens](https://docs.magic.link/embedded-wallets/authentication/features/decentralized-id#decentralized-id-did-tokens) and interact with Magic API endpoints with ease.
 
@@ -139,7 +139,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/license/mit) file for details.
 
 ## 📝 Changelog
 
