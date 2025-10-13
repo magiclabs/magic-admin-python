@@ -31,8 +31,8 @@ pytest-cov==7.0.0
 pytest-mock==3.15.1
 six==1.17.0
 toml==0.10.2
-tox==4.30.3
+tox==4.31.0
 traitlets==5.14.3
-virtualenv==20.34.0
+virtualenv==20.35.3
 wcwidth==0.2.14
 zipp==3.23.0
