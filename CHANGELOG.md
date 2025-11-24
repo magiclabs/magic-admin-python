@@ -1,3 +1,14 @@
+## `2.1.3` - 2025-11-24
+
+#### 🐛 Bug Fixes
+
+- **Fixed package build to include all subpackages** [#118](https://github.com/magiclabs/magic-admin-python/pull/118)
+  - Updated `pyproject.toml` to explicitly include `magic_admin.resources` and `magic_admin.utils` subpackages in the distribution
+  - Previously, only the top-level `magic_admin` package was included, causing import errors for subpackage modules
+  - This ensures all subpackages are properly included in the built wheel and source distributions
+
+---
+
 ## `2.1.2` - 2025-09-29
 
 #### 🚀 New Features
