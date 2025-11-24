@@ -31,7 +31,7 @@ dependencies = [
 Website = "https://magic.link"
 
 [tool.setuptools]
-packages = ["magic_admin"]
+packages = ["magic_admin", "magic_admin.resources", "magic_admin.utils"]
 
 [tool.setuptools.package-data]
 magic_admin = ["*.txt", "*.md"]
