@@ -6,6 +6,14 @@ from magic_admin.utils.did_token import construct_issuer_with_public_address
 class User(ResourceComponent):
     v1_user_info = "/v1/admin/user"
     v1_user_logout = "/v1/admin/user/logout"
+    v2_user_info = "/v2/admin/user"
+
+    def get_metadata_by_email(self, email):
+        return self.request(
+            "get",
+            self.v2_user_info,
+            params={"type": "email", "value": email},
+        )
 
     def get_metadata_by_issuer_and_wallet(self, issuer, wallet_type):
         return self.request(
