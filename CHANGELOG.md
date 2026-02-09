@@ -1,3 +1,12 @@
+## `2.2.0` - 2026-02-06
+
+#### 🚀 New Features
+
+- **Added `get_metadata_by_email` to User resource**
+  - Enables retrieving user metadata using email address.
+
+---
+
 ## `2.1.3` - 2025-11-24
 
 #### 🐛 Bug Fixes

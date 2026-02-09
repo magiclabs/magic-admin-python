@@ -55,6 +55,22 @@ class TestUser:
         self.user = User()
         self.user.Token = mock.Mock()
 
+    def test_get_metadata_by_email(self):
+        self.user.request = mock.Mock(return_value=self.metadata_no_wallets)
+
+        assert (
+            self.user.get_metadata_by_email(
+                sentinel.email,
+            )
+            == self.metadata_no_wallets
+        )
+
+        self.user.request.assert_called_once_with(
+            "get",
+            self.user.v2_user_info,
+            params={"type": "email", "value": sentinel.email},
+        )
+
     @pytest.fixture
     def mock_construct_issuer_with_public_address(self, mocker):
         return mocker.patch(
