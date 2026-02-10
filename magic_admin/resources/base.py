@@ -1,3 +1,5 @@
+from enum import Enum
+
 from magic_admin.config import base_url
 from magic_admin.http_client import RequestsClient
 
@@ -38,10 +40,22 @@ class ResourceComponent(metaclass=ResourceMeta):
             url_path=url_path,
         )
 
+    def _sanitize_request_data(self, data):
+        if isinstance(data, dict):
+            return {k: self._sanitize_request_data(v) for k, v in data.items()}
+
+        elif isinstance(data, (list, tuple)):
+            return [self._sanitize_request_data(item) for item in data]
+
+        elif isinstance(data, Enum):
+            return data.value
+
+        return data
+
     def request(self, method, url_path, params=None, data=None):
         return self._request_client.request(
             method.lower(),
             self._construct_url(url_path),
-            params=params,
-            data=data,
+            params=self._sanitize_request_data(params),
+            data=self._sanitize_request_data(data),
         )
