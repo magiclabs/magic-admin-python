@@ -1,3 +1,13 @@
+## `2.2.1` - 2026-02-10
+
+#### 🐛 Bug Fixes
+
+- **Fixed version.py to match package version**
+  - Updated `VERSION` constant to `2.2.1`
+  - Handled `WalletType` enum values for requests
+
+---
+
 ## `2.2.0` - 2026-02-06
 
 #### 🚀 New Features
