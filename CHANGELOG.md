@@ -1,3 +1,14 @@
+## `2.3.0` - 2026-04-14
+
+#### 🚀 New Features
+
+- **Added `get_metadata_by_public_addresses` to User resource**
+  - Enables retrieving metadata for a batch of users in a single request, avoiding rate limiting issues when exporting large numbers of users
+  - Accepts a list of Ethereum public addresses and returns metadata for each user
+  - Errors for individual addresses (not found, unauthorized, malformed) are returned per-entry without failing the whole request
+
+---
+
 ## `2.2.1` - 2026-02-10
 
 #### 🐛 Bug Fixes
