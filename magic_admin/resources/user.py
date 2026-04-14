@@ -5,6 +5,7 @@ from magic_admin.utils.did_token import construct_issuer_with_public_address
 
 class User(ResourceComponent):
     v1_user_info = "/v1/admin/user"
+    v1_users_info = "/v1/admin/users"
     v1_user_logout = "/v1/admin/user/logout"
     v2_user_info = "/v2/admin/user"
 
@@ -39,6 +40,18 @@ class User(ResourceComponent):
     def get_metadata_by_public_address(self, public_address):
         return self.get_metadata_by_issuer(
             construct_issuer_with_public_address(public_address),
+        )
+
+    def get_metadata_by_public_addresses(self, public_addresses):
+        return self.request(
+            "post",
+            self.v1_users_info,
+            data={
+                "issuers": [
+                    construct_issuer_with_public_address(addr)
+                    for addr in public_addresses
+                ],
+            },
         )
 
     def get_metadata_by_token(self, did_token):
