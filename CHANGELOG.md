@@ -1,3 +1,13 @@
+## `2.4.0` - 2026-05-06
+
+#### 🚀 New Features
+
+- **Added optional `provider` argument to `get_metadata_by_email`**
+  - Enables explicitly targeting OAuth users by provider when an email user with the same email also exists
+  - Example: `get_metadata_by_email(email, provider="google")`
+
+---
+
 ## `2.3.0` - 2026-04-14
 
 #### 🚀 New Features

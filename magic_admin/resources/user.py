@@ -9,12 +9,11 @@ class User(ResourceComponent):
     v1_user_logout = "/v1/admin/user/logout"
     v2_user_info = "/v2/admin/user"
 
-    def get_metadata_by_email(self, email):
-        return self.request(
-            "get",
-            self.v2_user_info,
-            params={"type": "email", "value": email},
-        )
+    def get_metadata_by_email(self, email, provider=None):
+        params = {"type": "email", "value": email}
+        if provider:
+            params["provider"] = provider
+        return self.request("get", self.v2_user_info, params=params)
 
     def get_metadata_by_issuer_and_wallet(self, issuer, wallet_type):
         return self.request(
