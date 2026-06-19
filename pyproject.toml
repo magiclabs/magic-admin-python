@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "magic-admin"
-version = "2.4.0"
+version = "2.5.0"
 description = "Magic Python Library"
 readme = "README.md"
 authors = [
