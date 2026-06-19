@@ -7,6 +7,7 @@ class User(ResourceComponent):
     v1_user_info = "/v1/admin/user"
     v1_users_info = "/v1/admin/users"
     v1_user_logout = "/v1/admin/user/logout"
+    v1_user_remove_mfa = "/v1/admin/user/remove_mfa"
     v2_user_info = "/v2/admin/user"
 
     def get_metadata_by_email(self, email, provider=None):
@@ -66,3 +67,12 @@ class User(ResourceComponent):
 
     def logout_by_token(self, did_token):
         return self.logout_by_issuer(self.Token.get_issuer(did_token))
+
+    def remove_mfa_by_public_address(self, public_address):
+        return self.request(
+            "post",
+            self.v1_user_remove_mfa,
+            data={
+                "issuer": construct_issuer_with_public_address(public_address),
+            },
+        )
