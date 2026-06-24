@@ -7,6 +7,7 @@ from pretend import stub
 from magic_admin.resources.user import User
 from magic_admin.resources.wallet import WalletType
 from testing.data.did_token import future_did_token
+from testing.data.did_token import issuer
 from testing.data.did_token import public_address
 
 
@@ -262,4 +263,19 @@ class TestUser:
         self.user.Token.get_issuer.assert_called_once_with(future_did_token)
         self.user.logout_by_issuer.assert_called_once_with(
             self.user.Token.get_issuer.return_value,
+        )
+
+    def test_remove_mfa_by_public_address(self):
+        self.user.request = mock.Mock()
+
+        assert self.user.remove_mfa_by_public_address(
+            public_address,
+        )
+
+        self.user.request.assert_called_once_with(
+            "post",
+            self.user.v1_user_remove_mfa,
+            data={
+                "issuer": issuer,
+            },
         )

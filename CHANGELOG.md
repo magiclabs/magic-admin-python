@@ -1,3 +1,15 @@
+## `2.5.0` - 2026-06-19
+
+#### 🚀 New Features
+
+- **Added `remove_mfa_by_public_address` to the User resource**
+  - Lets developers remove (deactivate) all multi-factor authentication for one of their app's users, identified by the user's public address
+  - Useful for support flows where a user is locked out of their authenticator
+  - Example: `magic.User.remove_mfa_by_public_address("0x...")`
+  - The user must belong to the app associated with your secret key; otherwise the request is rejected
+
+---
+
 ## `2.4.0` - 2026-05-06
 
 #### 🚀 New Features
