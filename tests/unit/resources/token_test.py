@@ -18,7 +18,7 @@ class TestToken:
 
     @staticmethod
     def _generate_claim(fields=None):
-        return {field: mock.ANY for field in fields or Token.required_fields}
+        return {field: 1 for field in fields or Token.required_fields}
 
     def test_required_fields(self):
         assert (
@@ -38,6 +38,24 @@ class TestToken:
 
     def test_check_required_fields_passes(self):
         Token._check_required_fields(self._generate_claim())
+
+    def test_check_required_fields_rejects_non_finite_ext(self):
+        claim = self._generate_claim()
+        claim["ext"] = float("inf")
+
+        with pytest.raises(DIDTokenMalformed) as e:
+            Token._check_required_fields(claim)
+
+        assert str(e.value) == 'DID token "ext" must be a finite Unix timestamp.'
+
+    def test_check_required_fields_rejects_nan_nbf(self):
+        claim = self._generate_claim()
+        claim["nbf"] = float("nan")
+
+        with pytest.raises(DIDTokenMalformed) as e:
+            Token._check_required_fields(claim)
+
+        assert str(e.value) == 'DID token "nbf" must be a finite Unix timestamp.'
 
     def test_get_issuer_passes(self):
         mocked_claim = {"iss": self.issuer}
@@ -285,6 +303,30 @@ class TestTokenValidate:
             str(e.value) == 'Please check the "ext" field and regenerate a new'
             " token with a suitable value."
         )
+
+    def test_validate_raises_error_if_ext_is_not_finite(self, setup_mocks):
+        setup_mocks.claim["ext"] = float("inf")
+
+        with pytest.raises(DIDTokenMalformed) as e:
+            Token.validate(self.did_token)
+
+        assert str(e.value) == 'DID token "ext" must be a finite Unix timestamp.'
+
+    def test_validate_raises_error_if_nbf_is_not_finite(self, setup_mocks):
+        setup_mocks.claim["nbf"] = float("nan")
+
+        with pytest.raises(DIDTokenMalformed) as e:
+            Token.validate(self.did_token)
+
+        assert str(e.value) == 'DID token "nbf" must be a finite Unix timestamp.'
+
+    def test_validate_raises_error_if_ext_is_not_numeric(self, setup_mocks):
+        setup_mocks.claim["ext"] = "never"
+
+        with pytest.raises(DIDTokenMalformed) as e:
+            Token.validate(self.did_token)
+
+        assert str(e.value) == 'DID token "ext" must be a finite Unix timestamp.'
 
     def test_validate_raises_error_if_did_token_used_before_nbf(self, setup_mocks):
         setup_mocks.epoch_time_now.return_value = setup_mocks.claim["nbf"] - 1
