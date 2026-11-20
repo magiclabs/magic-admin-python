@@ -1,3 +1,13 @@
+## Upcoming Changes
+
+#### 🐛 Bug Fixes
+
+- **Reject non-finite DID token `iat` / `ext` / `nbf`**
+  - `json.loads` accepts `NaN` and `Infinity`. Comparisons against those values are always false, so `ext: Infinity` never expired and `nbf: NaN` never blocked use.
+  - Strings such as `"never"` now raise `DIDTokenMalformed` instead of a raw `TypeError`.
+
+---
+
 ## `2.5.0` - 2026-06-19
 
 #### 🚀 New Features

@@ -1,5 +1,6 @@
 import base64
 import json
+import math
 
 from eth_account.messages import encode_defunct
 from web3.auto import w3
@@ -15,6 +16,14 @@ from magic_admin.utils.time import epoch_time_now
 
 
 EXPECTED_DID_TOKEN_CONTENT_LENGTH = 2
+
+
+def _is_finite_unix_seconds(value):
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+    )
 
 
 class Token(ResourceComponent):
@@ -51,6 +60,14 @@ class Token(ResourceComponent):
                     sorted(missing_fields),
                 ),
             )
+
+        for field in ("iat", "ext", "nbf"):
+            if not _is_finite_unix_seconds(claim[field]):
+                raise DIDTokenMalformed(
+                    message='DID token "{}" must be a finite Unix timestamp.'.format(
+                        field,
+                    ),
+                )
 
     @classmethod
     def decode(cls, did_token):
@@ -146,6 +163,18 @@ class Token(ResourceComponent):
             raise DIDTokenInvalid(
                 message='Please check the "ext" field and regenerate a new token '
                 "with a suitable value.",
+            )
+
+        for field in ("ext", "nbf"):
+            if not _is_finite_unix_seconds(claim.get(field)):
+                raise DIDTokenMalformed(
+                    message='DID token "{}" must be a finite Unix timestamp.'.format(
+                        field,
+                    ),
+                )
+        if "iat" in claim and not _is_finite_unix_seconds(claim["iat"]):
+            raise DIDTokenMalformed(
+                message='DID token "iat" must be a finite Unix timestamp.',
             )
 
         recovered_address = w3.eth.account.recover_message(
