@@ -33,6 +33,6 @@ six==1.17.0
 toml==0.10.2
 tox==4.32.0
 traitlets==5.14.3
-virtualenv==20.35.4
+virtualenv==20.36.1
 wcwidth==0.2.14
 zipp==3.23.0
