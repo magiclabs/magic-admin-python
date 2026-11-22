@@ -4,10 +4,7 @@ import pytest
 
 import magic_admin
 from magic_admin.error import AuthenticationError
-from magic_admin.magic import BACKOFF_FACTOR
-from magic_admin.magic import Magic
-from magic_admin.magic import RETRIES
-from magic_admin.magic import TIMEOUT
+from magic_admin.magic import BACKOFF_FACTOR, RETRIES, TIMEOUT, Magic
 
 
 class TestMagic:

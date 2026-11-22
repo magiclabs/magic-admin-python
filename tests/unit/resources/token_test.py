@@ -5,16 +5,14 @@ from unittest import mock
 import pytest
 from pretend import stub
 
-from magic_admin.error import DIDTokenExpired
-from magic_admin.error import DIDTokenInvalid
-from magic_admin.error import DIDTokenMalformed
+from magic_admin.error import DIDTokenExpired, DIDTokenInvalid, DIDTokenMalformed
 from magic_admin.resources.token import Token
 
 
 class TestToken:
     did_token = "magic_token"
     public_address = "magic_address"
-    issuer = "did:ethr:{}".format(public_address)
+    issuer = f"did:ethr:{public_address}"
 
     @staticmethod
     def _generate_claim(fields=None):

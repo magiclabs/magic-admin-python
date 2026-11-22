@@ -35,14 +35,12 @@ class TestResourceComponent:
             self.backoff_factor,
         )
         for resource in self.rc._registry.values():
-            assert (
-                getattr(resource, "_request_client") == mock_request_client.return_value
-            )
+            assert resource._request_client == mock_request_client.return_value
 
     def test_construct_url(self):
-        assert self.rc._construct_url(self.url_path) == "{}{}".format(
-            self.rc._base_url,
-            self.url_path,
+        assert (
+            self.rc._construct_url(self.url_path)
+            == f"{self.rc._base_url}{self.url_path}"
         )
 
     def test_request(self):

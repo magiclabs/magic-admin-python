@@ -15,10 +15,10 @@ def parse_public_address_from_issuer(issuer):
         return issuer.split(":")[2]
     except IndexError:
         raise DIDTokenMalformed(
-            "Given issuer ({}) is malformed. Please make sure it follows the "
-            "`did:method-name:method-specific-id` format.".format(issuer),
+            f"Given issuer ({issuer}) is malformed. Please make sure it follows the "
+            "`did:method-name:method-specific-id` format.",
         )
 
 
 def construct_issuer_with_public_address(public_address):
-    return "did:ethr:{}".format(public_address)
+    return f"did:ethr:{public_address}"

@@ -1,10 +1,11 @@
 import pytest
 
 from magic_admin.error import DIDTokenMalformed
-from magic_admin.utils.did_token import construct_issuer_with_public_address
-from magic_admin.utils.did_token import parse_public_address_from_issuer
-from testing.data.did_token import issuer
-from testing.data.did_token import public_address
+from magic_admin.utils.did_token import (
+    construct_issuer_with_public_address,
+    parse_public_address_from_issuer,
+)
+from testing.data.did_token import issuer, public_address
 
 
 class TestDIDToken:
@@ -19,8 +20,8 @@ class TestDIDToken:
 
         assert (
             str(e.value)
-            == "Given issuer ({}) is malformed. Please make sure it follows the "
-            "`did:method-name:method-specific-id` format.".format(self.malformed_issuer)
+            == f"Given issuer ({self.malformed_issuer}) is malformed. Please make sure it follows the "
+            "`did:method-name:method-specific-id` format."
         )
 
     def test_construct_issuer_with_public_address(self):

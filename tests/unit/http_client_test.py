@@ -7,12 +7,14 @@ import pytest
 import magic_admin
 from magic_admin import version
 from magic_admin.config import base_url
-from magic_admin.error import APIConnectionError
-from magic_admin.error import APIError
-from magic_admin.error import AuthenticationError
-from magic_admin.error import BadRequestError
-from magic_admin.error import ForbiddenError
-from magic_admin.error import RateLimitingError
+from magic_admin.error import (
+    APIConnectionError,
+    APIError,
+    AuthenticationError,
+    BadRequestError,
+    ForbiddenError,
+    RateLimitingError,
+)
 from magic_admin.http_client import RequestsClient
 from magic_admin.response import MagicResponse
 
@@ -52,7 +54,7 @@ class TestRequestsClient:
             assert RequestsClient._get_platform_info() == {
                 "platform": platform_name,
                 "language_version": py_version,
-                "uname": "<{}>".format(error_msg),
+                "uname": f"<{error_msg}>",
             }
 
         platform.platform.assert_called_once_with()

@@ -7,14 +7,15 @@ from requests.packages.urllib3.util.retry import Retry
 
 import magic_admin
 from magic_admin import version
-from magic_admin.config import api_secret_api_key_missing_message
-from magic_admin.config import base_url
-from magic_admin.error import APIConnectionError
-from magic_admin.error import APIError
-from magic_admin.error import AuthenticationError
-from magic_admin.error import BadRequestError
-from magic_admin.error import ForbiddenError
-from magic_admin.error import RateLimitingError
+from magic_admin.config import api_secret_api_key_missing_message, base_url
+from magic_admin.error import (
+    APIConnectionError,
+    APIError,
+    AuthenticationError,
+    BadRequestError,
+    ForbiddenError,
+    RateLimitingError,
+)
 from magic_admin.response import MagicResponse
 
 
@@ -37,8 +38,8 @@ class RequestsClient:
         ]:
             try:
                 val = str(func())
-            except Exception as e:
-                val = "<{}>".format(str(e))
+            except Exception as e:  # noqa: BLE001
+                val = f"<{e!s}>"
 
             platform_info[attr] = val
 
@@ -89,7 +90,7 @@ class RequestsClient:
                 headers=self._get_request_headers(),
                 timeout=self._timeout,
             )
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             return self._handle_request_error(e)
 
         return self._parse_and_convert_to_api_response(

@@ -1,10 +1,12 @@
+from typing import ClassVar
+
 from magic_admin.response import MagicResponse
 
 
 class TestMagicResponse:
     content = "troll_goat"
     status_code = 200
-    resp_data = {"data": "another_troll_goat"}
+    resp_data: ClassVar[dict[str, str]] = {"data": "another_troll_goat"}
 
     def test_response(self):
         resp = MagicResponse(

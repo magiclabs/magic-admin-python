@@ -1,12 +1,10 @@
 import os
 
 import magic_admin
-from magic_admin.config import api_secret_api_key_missing_message
-from magic_admin.config import base_url
+from magic_admin.config import api_secret_api_key_missing_message, base_url
 from magic_admin.error import AuthenticationError
 from magic_admin.http_client import RequestsClient
 from magic_admin.resources.base import ResourceComponent
-
 
 RETRIES = 3
 TIMEOUT = 10

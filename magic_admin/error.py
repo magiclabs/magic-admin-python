@@ -7,10 +7,7 @@ class MagicError(Exception):
         return self._message or "<empty message>"
 
     def __repr__(self):
-        return "{error_class}(message={message!r})".format(
-            error_class=self.__class__.__name__,
-            message=self._message,
-        )
+        return f"{self.__class__.__name__}(message={self._message!r})"
 
     def to_dict(self):
         return {"message": str(self)}
@@ -61,14 +58,9 @@ class RequestError(MagicError):
 
     def __repr__(self):
         return (
-            "{error_class}(message={message!r}, "
-            "http_error_code={http_error_code}, "
-            "http_code={http_code}).".format(
-                error_class=self.__class__.__name__,
-                message=self._message or None,
-                http_error_code=self.http_error_code or None,
-                http_code=self.http_code or None,
-            )
+            f"{self.__class__.__name__}(message={self._message or None!r}, "
+            f"http_error_code={self.http_error_code or None}, "
+            f"http_code={self.http_code or None})."
         )
 
     def to_dict(self):

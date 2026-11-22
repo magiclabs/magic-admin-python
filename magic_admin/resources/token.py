@@ -5,14 +5,10 @@ from eth_account.messages import encode_defunct
 from web3.auto import w3
 
 import magic_admin
-from magic_admin.error import DIDTokenExpired
-from magic_admin.error import DIDTokenInvalid
-from magic_admin.error import DIDTokenMalformed
+from magic_admin.error import DIDTokenExpired, DIDTokenInvalid, DIDTokenMalformed
 from magic_admin.resources.base import ResourceComponent
 from magic_admin.utils.did_token import parse_public_address_from_issuer
-from magic_admin.utils.time import apply_did_token_nbf_grace_period
-from magic_admin.utils.time import epoch_time_now
-
+from magic_admin.utils.time import apply_did_token_nbf_grace_period, epoch_time_now
 
 EXPECTED_DID_TOKEN_CONTENT_LENGTH = 2
 
@@ -47,9 +43,7 @@ class Token(ResourceComponent):
 
         if missing_fields:
             raise DIDTokenMalformed(
-                message="DID token is missing required field(s): {}".format(
-                    sorted(missing_fields),
-                ),
+                message=f"DID token is missing required field(s): {sorted(missing_fields)}",
             )
 
     @classmethod
@@ -69,7 +63,7 @@ class Token(ResourceComponent):
             decoded_did_token = json.loads(
                 base64.urlsafe_b64decode(did_token).decode("utf-8"),
             )
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             raise DIDTokenMalformed(
                 message="DID token is malformed. It has to be a based64 encoded "
                 "JSON serialized string. {err} ({msg}).".format(
@@ -88,7 +82,7 @@ class Token(ResourceComponent):
 
         try:
             claim = json.loads(decoded_did_token[1])
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             raise DIDTokenMalformed(
                 message="DID token is malformed. Given claim should be a JSON "
                 "serialized string. {err} ({msg}).".format(

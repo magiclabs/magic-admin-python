@@ -1,8 +1,13 @@
-from magic_admin.resources.base import ResourceComponent
-from magic_admin.error import DIDTokenMalformed, DIDTokenExpired
-from magic_admin.error import ExpectedBearerStringError
-from web3 import Web3
 import json
+
+from web3 import Web3
+
+from magic_admin.error import (
+    DIDTokenExpired,
+    DIDTokenMalformed,
+    ExpectedBearerStringError,
+)
+from magic_admin.resources.base import ResourceComponent
 
 
 class Utils(ResourceComponent):
@@ -36,7 +41,7 @@ class Utils(ResourceComponent):
         contract_address: str,
         contract_type: str,
         rpc_url: str,
-        token_id: str = None,
+        token_id: str | None = None,
     ) -> dict:
         """
         Token Gating function validates user ownership of wallet + NFT.
@@ -80,8 +85,8 @@ class Utils(ResourceComponent):
                 "error_code": "UNAUTHORIZED",
                 "message": "Invalid DID token: ERROR_DIDT_EXPIRED",
             }
-        except Exception as e:
-            raise Exception(str(e))
+        except Exception as e:  # noqa: BLE001
+            raise Exception(str(e))  # noqa: TRY002
 
         # Check on-chain if user owns NFT by calling contract with web3
         w3 = Web3(Web3.HTTPProvider(rpc_url))
