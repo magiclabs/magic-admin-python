@@ -22,23 +22,17 @@ class ResourceComponent(metaclass=ResourceMeta):
             return self._registry[resource_name]
         else:
             raise AttributeError(
-                "{object_name} has no attribute '{resource_name}'".format(
-                    object_name=self.__class__.__name__,
-                    resource_name=resource_name,
-                ),
+                f"{self.__class__.__name__} has no attribute '{resource_name}'",
             )
 
     def setup_request_client(self, retries, timeout, backoff_factor):
         _request_client = RequestsClient(retries, timeout, backoff_factor)
 
         for resource in self._registry.values():
-            setattr(resource, "_request_client", _request_client)
+            resource._request_client = _request_client
 
     def _construct_url(self, url_path):
-        return "{base_url}{url_path}".format(
-            base_url=self._base_url,
-            url_path=url_path,
-        )
+        return f"{self._base_url}{url_path}"
 
     def _sanitize_request_data(self, data):
         if isinstance(data, dict):

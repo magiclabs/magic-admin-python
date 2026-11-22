@@ -1,6 +1,5 @@
 from magic_admin.magic import Magic  # noqa: F401
 
-
 # Magic API secret key.
 api_secret_key = None
 

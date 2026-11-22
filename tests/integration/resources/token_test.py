@@ -3,11 +3,13 @@ from unittest import mock
 from pretend import stub
 
 from magic_admin.resources.token import Token
-from testing.data.did_token import claim
-from testing.data.did_token import future_did_token
-from testing.data.did_token import issuer
-from testing.data.did_token import proof
-from testing.data.did_token import public_address
+from testing.data.did_token import (
+    claim,
+    future_did_token,
+    issuer,
+    proof,
+    public_address,
+)
 
 
 class TestToken:

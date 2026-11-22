@@ -1,8 +1,7 @@
 from unittest import mock
 
 from magic_admin import did_token_nbf_grace_period_s
-from magic_admin.utils.time import apply_did_token_nbf_grace_period
-from magic_admin.utils.time import epoch_time_now
+from magic_admin.utils.time import apply_did_token_nbf_grace_period, epoch_time_now
 
 
 class TestTimeUtils:

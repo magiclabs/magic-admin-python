@@ -6,9 +6,7 @@ from pretend import stub
 
 from magic_admin.resources.user import User
 from magic_admin.resources.wallet import WalletType
-from testing.data.did_token import future_did_token
-from testing.data.did_token import issuer
-from testing.data.did_token import public_address
+from testing.data.did_token import future_did_token, issuer, public_address
 
 
 class TestUser:

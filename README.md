@@ -28,11 +28,11 @@ uv add magic-admin
 from magic_admin import Magic
 
 # Initialize with your API secret key
-magic = Magic(api_secret_key='your_api_secret_key_here')
+magic = Magic(api_secret_key="your_api_secret_key_here")
 
 # Validate a DID token
 try:
-    magic.Token.validate('DID_TOKEN_FROM_CLIENT')
+    magic.Token.validate("DID_TOKEN_FROM_CLIENT")
     print("Token is valid!")
 except Exception as e:
     print(f"Token validation failed: {e}")
@@ -61,10 +61,10 @@ Customize network behavior for your application:
 
 ```python
 magic = Magic(
-    api_secret_key='your_key',
-    retries=5,           # Number of retry attempts
-    timeout=10,          # Request timeout in seconds
-    backoff_factor=0.03  # Exponential backoff factor
+    api_secret_key="your_key",
+    retries=5,  # Number of retry attempts
+    timeout=10,  # Request timeout in seconds
+    backoff_factor=0.03,  # Exponential backoff factor
 )
 ```
 

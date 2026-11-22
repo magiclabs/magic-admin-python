@@ -53,7 +53,7 @@ class TestMagic:
 
     def test_raises_attr_error(self):
         with pytest.raises(AttributeError):
-            Magic(api_secret_key=self.api_secret_key).troll_goat
+            _ = Magic(api_secret_key=self.api_secret_key).troll_goat
 
     def test_raises_authentication_error_if_secret_key_missing(self):
         with pytest.raises(AuthenticationError):

@@ -1,12 +1,16 @@
-from magic_admin.error import APIConnectionError
-from magic_admin.error import APIError
-from magic_admin.error import AuthenticationError
-from magic_admin.error import BadRequestError
-from magic_admin.error import DIDTokenInvalid
-from magic_admin.error import ForbiddenError
-from magic_admin.error import MagicError
-from magic_admin.error import RateLimitingError
-from magic_admin.error import RequestError
+from typing import ClassVar
+
+from magic_admin.error import (
+    APIConnectionError,
+    APIError,
+    AuthenticationError,
+    BadRequestError,
+    DIDTokenInvalid,
+    ForbiddenError,
+    MagicError,
+    RateLimitingError,
+    RequestError,
+)
 
 
 class MagicErrorBase:
@@ -21,9 +25,10 @@ class MagicErrorBase:
         assert str(self.error_class()) == "<empty message>"
 
     def test_repr(self):
-        assert repr(
-            self.error_class(self.message)
-        ) == "{}(message='Magic is amazing')".format(self.error_class.__name__)
+        assert (
+            repr(self.error_class(self.message))
+            == f"{self.error_class.__name__}(message='Magic is amazing')"
+        )
 
     def test_to_dict(self):
         assert self.error_class(self.message).to_dict() == {
@@ -49,11 +54,11 @@ class RequestErrorBase:
     message = "Magic is amazing"
     http_status = "success"
     http_code = 200
-    http_resp_data = {"magic": "link"}
+    http_resp_data: ClassVar[dict[str, str]] = {"magic": "link"}
     http_message = "Troll goat is cute"
     http_error_code = "TROLL_GOAT_IS_CUTE"
     http_request_params = "a=b&b=c"
-    http_request_data = {"magic": "link"}
+    http_request_data: ClassVar[dict[str, str]] = {"magic": "link"}
     http_method = "post"
 
     def test_str(self):
@@ -63,16 +68,15 @@ class RequestErrorBase:
         assert str(self.error_class()) == "<empty message>"
 
     def test_repr(self):
-        assert repr(
-            self.error_class(
-                self.message,
-                http_error_code=self.http_error_code,
-                http_code=self.http_code,
-            ),
-        ) == "{}(message='Magic is amazing', http_error_code={}, http_code={}).".format(
-            self.error_class.__name__,
-            self.http_error_code,
-            self.http_code,
+        assert (
+            repr(
+                self.error_class(
+                    self.message,
+                    http_error_code=self.http_error_code,
+                    http_code=self.http_code,
+                ),
+            )
+            == f"{self.error_class.__name__}(message='Magic is amazing', http_error_code={self.http_error_code}, http_code={self.http_code})."
         )
 
     def test_to_dict(self):

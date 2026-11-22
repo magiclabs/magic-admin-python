@@ -1,7 +1,6 @@
 import pytest
 
-from magic_admin.utils.http import null_safe
-from magic_admin.utils.http import parse_authorization_header_value
+from magic_admin.utils.http import null_safe, parse_authorization_header_value
 
 
 class TestNullSafe:
